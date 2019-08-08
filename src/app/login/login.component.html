@@ -1,0 +1,35 @@
+<div class="container">
+    <mat-card color="primary" class="wrapper-card-login">
+      <h2 class="title-login">Sign in to your account</h2>
+      <p class="sec-title-login">Please enter your email and password to log in.</p>
+      <div class="wrapper-login alternative-mat-form-field-white-theme">
+          <mat-form-field appearance="outline" class="outline-white">
+            <mat-label>Username</mat-label>
+              <input matInput>
+              <mat-icon matSuffix class="icon-white">account_circle</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="outline-white">
+            <mat-label>Password</mat-label>
+              <input matInput type="password" min="7">
+              <mat-icon matSuffix class="icon-white">vpn_key</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="outline-white">
+            <mat-label>Type Access</mat-label>
+              <mat-select class="icon-white" placeholder="Select Role" name="role">
+                <mat-option *ngFor="let role of roles" [value]="role.value">
+                    {{role.name}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+     
+      
+    </mat-card>
+    <div class="wrapper-button">
+        <button mat-raised-button (click)="goToLogin()">Login</button>
+    </div>
+    <div class="wrapper-powered">
+        <span class="sec-title-login">2019 &copy; Powered by <a href="https://www.eannovate.com/">Eannovate</a></span>
+     </div>
+</div>
+  

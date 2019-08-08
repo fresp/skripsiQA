@@ -1,0 +1,146 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon aria-hidden="false" aria-label="Master Icon">cached</mat-icon> <span class="menu-list-name">Log</span> <mat-icon aria-hidden="false" aria-label="Expand Icon">expand_more</mat-icon>
+      </a>
+     
+      <a mat-list-item (click)="toggleMaster()">
+        <mat-icon aria-hidden="false" aria-label="Master Icon">apps</mat-icon> <span class="menu-list-name">Master</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isMaster == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isMaster == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu Master -->
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">My Open issues</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Reported by me</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">All Issue</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Open Issue</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Criticial Issue</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-master': isMaster}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Done Issue</span>
+        </a>
+      <!-- End Submenu Master -->
+
+      <a mat-list-item (click)="toggleUser()">
+        <mat-icon aria-hidden="false" aria-label="User Icon">apps</mat-icon> <span class="menu-list-name">User</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isUser == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isUser == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu User -->
+        <a mat-list-item class="first-child" routerLink="user" routerLinkActive="active"  [ngClass]="{'child-user': isUser}">
+          <mat-icon aria-hidden="false"  aria-label="User Icon">build</mat-icon> <span class="menu-list-name">Project Manager</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="user" routerLinkActive="active"  [ngClass]="{'child-user': isUser}">
+          <mat-icon aria-hidden="false"  aria-label="User Icon">build</mat-icon> <span class="menu-list-name">Quality Assurance</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="user" routerLinkActive="active"  [ngClass]="{'child-user': isUser}">
+          <mat-icon aria-hidden="false" aria-label="User Icon">build</mat-icon> <span class="menu-list-name">Programmer</span>
+        </a>
+      <!-- End Submenu User -->
+
+
+      <a mat-list-item (click)="toggleIssue()">
+        <mat-icon aria-hidden="false" aria-label="Issue Icon">apps</mat-icon> <span class="menu-list-name">Issue</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isIssue == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isIssue == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu Issue -->
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Issue Icon">build</mat-icon> <span class="menu-list-name">My Open issues</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Issue Icon">build</mat-icon> <span class="menu-list-name">Reported by me</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Issue Icon">build</mat-icon> <span class="menu-list-name">All Issue</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Issue Icon">build</mat-icon> <span class="menu-list-name">Open Issue</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Issue Icon">build</mat-icon> <span class="menu-list-name">Criticial Issue</span>
+        </a>
+        <a mat-list-item class="first-child" routerLink="board" routerLinkActive="active" [ngClass]="{'child-issue': isIssue}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Done Issue</span>
+        </a>
+      <!-- End Submenu Master -->
+
+
+      <a mat-list-item (click)="toggleReport()">
+        <mat-icon aria-hidden="false" aria-label="Report Icon">apps</mat-icon> <span class="menu-list-name">Report</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu Report -->
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Report Icon">build</mat-icon> <span class="menu-list-name">My Open Reports</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Report Icon">build</mat-icon> <span class="menu-list-name">Reported by me</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Report Icon">build</mat-icon> <span class="menu-list-name">All Report</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Report Icon">build</mat-icon> <span class="menu-list-name">Open Report</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Report Icon">build</mat-icon> <span class="menu-list-name">Criticial Report</span>
+        </a>
+        <a mat-list-item class="first-child" [ngClass]="{'child-report': isReport}">
+          <mat-icon aria-hidden="false" aria-label="Master Icon">build</mat-icon> <span class="menu-list-name">Done Report</span>
+        </a>
+      <!-- End Submenu Master -->
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="wrapper-header-content">
+        <div class="header-content-left">
+          <div class="title-company">QA Tracking Admin</div>
+          <div class="desc-app-company">QA Tracking Management System</div>
+        </div>
+      </div>
+      <div class="wrapper-header-content-right text-right">
+        <div class="header-content-right" [matMenuTriggerFor]="belowMenu">
+            <img src="../../assets/image/salestar.png" alt="User Profile">
+            <div class="header-content-right-text">
+              <div class="username">Administrator Salestar</div>
+              <div class="role">Super User</div>
+            </div>
+        </div>
+        <mat-menu #belowMenu="matMenu">
+            <button mat-menu-item><mat-icon aria-hidden="false" aria-label="Home Icon">home</mat-icon> Home</button>
+            <button mat-menu-item><mat-icon aria-hidden="false" aria-label="Home Icon">account_circle</mat-icon> Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+      <router-outlet></router-outlet>
+    <!-- End Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

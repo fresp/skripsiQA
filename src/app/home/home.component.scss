@@ -1,0 +1,17 @@
+@import '../../theme.scss';
+
+.wrapper-card {
+    margin: 0 20px;
+
+    .wrapper-greet {
+        padding: 20px;
+        color: mat-color($oneplus-app-grey, 600);
+
+        .title-greet {
+            font-size: 38px;
+        }
+        .desc-greet {
+            margin: 5px 0;
+        }
+    }
+}

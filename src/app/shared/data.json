@@ -1,0 +1,123 @@
+[
+    
+  {
+    "title": "REDO",
+    "id": "qapass2",
+    "background" : "#f009",
+    "tasks": [
+      {
+        "id": "qa",
+        "ticket_number": "HS-91823-1293",
+        "title": "qaPass",
+        "description": "This is my qaPass",
+        "priority": "critical"
+      }
+    ]
+  },
+  {
+      "title": "Todo",
+      "id": "todo",
+      "background" : "#f8ead4",
+      "tasks": [
+        {
+          "id": "first-task",
+          "ticket_number": "HS-91823-1293",
+          "title": "First Task",
+          "description": "This is my first task",
+          "priority": "minor"
+        },
+        {
+          "id": "first-task",
+          "ticket_number": "HS-91823-1293",
+          "title": "First Task",
+          "description": "This is my first task",
+          "priority": "minor"
+        },
+        {
+          "id": "first-task",
+          "ticket_number": "HS-91823-1293",
+          "title": "First Task",
+          "description": "This is my first task",
+          "priority": "minor"
+        },
+        {
+          "id": "first-task",
+          "ticket_number": "HS-91823-1293",
+          "title": "First Task",
+          "description": "This is my first task",
+          "priority": "minor"
+        }
+
+      ]
+    },
+    {
+      "title": "Inprogress",
+      "id": "inprogress",
+      "background" : "#5d9c9d",
+      "tasks": [
+        {
+          "id": "in-progress",
+          "ticket_number": "HS-91823-1293",
+          "title": "Inprogress",
+          "description": "This is my Inprogress",
+          "priority": "minor"
+        }
+      ]
+    },
+    {
+      "title": "Ready To Test",
+      "id": "ddone",
+      "background" : "#aec2dc",
+      "tasks": [
+        {
+          "id": "ddone",
+          "ticket_number": "HS-91823-1293",
+          "title": "Done",
+          "description": "This is my Done",
+          "priority": "minor"
+        }
+      ]
+    },
+    {
+      "title": "Done",
+      "id": "qapass1",
+      "background" : "#abfc1b",
+      "tasks": [
+        {
+          "id": "qa",
+          "title": "qaPass",
+          "description": "This is my qaPass",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "title": "QA Pass",
+      "id": "qapass3",
+      "background" : "#fbfc2b",
+      "tasks": [
+        {
+          "id": "qa",
+          "ticket_number": "HS-91823-1293",
+          "title": "qaPass",
+          "description": "This is my qaPass",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "title": "QA Pass",
+      "id": "qapass4",
+      "background" : "#acfc2b",
+      "tasks": [
+        {
+          "id": "qa",
+          "ticket_number": "HS-91823-1293",
+          "title": "qaPass",
+          "description": "This is my qaPass",
+          "priority": "critical"
+        }
+      ]
+    }
+  ]
+  

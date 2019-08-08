@@ -1,0 +1,52 @@
+.marg0 {
+    margin: 0 !important;
+}
+.marg10 {
+    margin: 10px !important;
+}
+.marg15 {
+    margin: 15px !important;
+}
+.marg20 {
+    margin: 20px !important;
+}
+
+.margh10 {
+    margin: 0 10px;
+}
+.margh15 {
+    margin: 0 15px;
+}
+.margh20 {
+    margin: 0 20px;
+}
+
+.margv10 {
+    margin: 10px 0;
+}
+.margv15 {
+    margin: 15px 0;
+}
+.margv20 {
+    margin: 20px 0;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+
+.bg-indigo {
+    background-color: mat-color($oneplus-app-indigo) !important;
+    color: white !important;
+}
+
+.bg-blue {
+    background-color: mat-color($oneplus-app-blue) !important;
+    color: white !important;
+}

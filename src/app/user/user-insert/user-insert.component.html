@@ -1,0 +1,37 @@
+<div class="wrapper-form">
+    <h1 mat-dialog-title>Add New User</h1>
+    <mat-select placeholder="Select Role" name="item">
+        <mat-option *ngFor="let item of items" [value]="item.id">
+            {{item.name}}
+        </mat-option>
+    </mat-select>
+    <mat-form-field>
+        <input matInput placeholder="E-mail">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Password">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Re-password">
+    </mat-form-field>
+
+    <!-- <label for="singleFile">Upload file</label>
+    <input id="singleFile" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+    <br>
+ 
+    <mat-file-upload-queue #fileUploadQueue
+        [fileAlias]="'file'"
+        [httpUrl]="'http://localhost:50221/jax-rs-jersey-application-sample'">
+ 
+        <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+    </mat-file-upload-queue> -->
+
+    <mat-checkbox color="primary">Publish</mat-checkbox>
+    <div mat-dialog-actions>
+        <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onCancelClick()" cdkFocusInitial>Create</button>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+@import './theme.scss';
+@import './customize.scss';
+
+* {
+    box-sizing: border-box;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-form-field.outline-white {
+
+    .mat-form-field-empty.mat-form-field-label {
+        color: rgb(221, 221, 221);
+    }
+    .mat-form-field-label{
+        color: white;
+    }
+    .mat-input-element {
+        color: white;
+        caret-color: white;
+    }
+    .mat-form-field-outline {
+        color: rgb(221, 221, 221) !important;
+    }
+    .mat-form-field-appearance-outline {
+        background-color: rgb(221, 221, 221);
+    }
+    .mat-form-field-outline-thick{
+        color: white !important;
+    }
+    
+}
+
+.container-breadcrumb {
+    .wrapper-breadcrumb {
+        padding-inline-start: 20px;
+        list-style-type: none;
+
+        .active {
+            font-weight: 600;
+            color: #707070;
+        }
+    }
+}

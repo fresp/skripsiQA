@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+//Public theme
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
+$oneplus-app-green: mat-palette($mat-green);
+$oneplus-app-blue: mat-palette($mat-blue);
+$oneplus-app-yellow: mat-palette($mat-yellow);
+$oneplus-app-grey: mat-palette($mat-grey);
+$oneplus-app-indigo: mat-palette($mat-indigo);
+
+$oneplus-app-primary: mat-palette($mat-indigo);
+$oneplus-app-accent: mat-palette($mat-orange);
+$oneplus-app-warn: mat-palette($mat-red);
+$oneplus-app-theme: mat-light-theme(
+  $oneplus-app-primary,
+  $oneplus-app-accent,
+  $oneplus-app-warn
+);
+
+@include angular-material-theme($oneplus-app-theme);
+
+.alternative-mat-form-field-white-theme {
+    $form-field-white-primary: mat-palette($mat-grey, A100);
+    $form-field-white-accent: mat-palette($mat-grey, 400);
+
+    $form-field-white-theme: mat-light-theme(
+        $form-field-white-primary,
+        $form-field-white-accent
+    );
+
+    @include mat-form-field-theme($form-field-white-theme);
+}
+
+// $form-field-indigo-theme: mat-light-theme(
+//     $oneplus-app-indigo,
+//     $oneplus-app-blue
+// );
+// @include mat-form-field-theme($form-field-indigo-theme);

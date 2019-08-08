@@ -1,0 +1,26 @@
+.container-not-found{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .title{
+        font-size: 140px;
+        font-weight: 500;
+        color: #00BDCC;
+    }
+
+    .wrapper-text {
+        text-align: center;
+        color: #8B91A0;
+
+        .sec-title {
+            margin: 0 0 10px;
+            
+            .text-desc {
+                font-size: 18px;
+            }
+        }
+    }
+}

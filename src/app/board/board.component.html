@@ -1,0 +1,54 @@
+<div class="container-breadcrumb">
+    <ul class="wrapper-breadcrumb">
+        <li class="active">Board Management</li>
+    </ul>
+</div>
+              
+<div class="mat-elevation-z8 wrapper-table">
+    <div class="wrapper-filter">
+        <mat-form-field>
+            <mat-select placeholder="Select Project" name="item">
+              <mat-option *ngFor="let item of items" [value]="item.id">
+                  {{item.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+      
+</div>
+<div class="wrapper-table">
+  <div class="board" cdkDropList [cdkDropListData]="tracks" (cdkDropListDropped)="onTrackDrop($event)" cdkDropListOrientation="horizontal">
+    <mat-card class="card-list mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--12-col-phone" *ngFor="let track of tracks; let i=index">
+      <mat-card-title>
+        <h2 cdkDragHandle class="mdl-card__title-text">{{track.title}}</h2> 
+      </mat-card-title>
+      <div>
+        <div  cdkDropList [id]="track.id" [cdkDropListData]="track.tasks"
+          [cdkDropListConnectedTo]="trackIds" (cdkDropListDropped)="onTalkDrop($event)" style="min-height: 80px">
+            <mat-card class="no-data" *ngIf="track.tasks.length == 0"  Style="background: rgb(182, 182, 182)" >
+              <!-- Use the mat-card-content to add the proper spacing. -->
+              <mat-card-content>
+                  <span>No Data</span>
+              </mat-card-content>
+            </mat-card>
+            <div class="card-list-content" *ngFor="let task of track.tasks" cdkDrag>
+              <mat-card  [ngStyle]="{'background': track.background}" >
+                <!-- Use the mat-card-content to add the proper spacing. -->
+                <mat-card-content>
+                  <span class="priority">{{task.priority}}</span>
+                </mat-card-content>
+                <mat-card-content>
+                    <span class="title">{{task.title}}</span>
+                    <div  class="description">{{task.description}}</div>
+                </mat-card-content>
+                <mat-card-content>
+                  <a [routerLink]="['/secure/board/'+task.priority+'/ticket/'+task.ticket_number]">View Detail <i class="material-icons">chevron_right</i></a>
+                </mat-card-content>
+              </mat-card>
+              
+            </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

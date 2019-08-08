@@ -1,0 +1,109 @@
+@import '../../theme.scss';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+
+  .child-master {
+    display: none;
+  }
+  .child-user {
+    display: none;
+  }
+  .child-issue {
+    display: none;
+  }
+  .child-report {
+    display: none;
+  }
+
+  .first-child {
+    padding-left: 12px;
+  }
+  .menu-list-name {
+    flex: 1;
+    margin: 0 10px;
+  }
+}
+
+.sidenav .mat-toolbar {
+  // background: inherit;
+  color: white;
+}
+
+.menu-button {
+  margin-right: 10px;
+}
+
+.wrapper-header-content {
+  flex: 1;
+
+  .header-content-left {
+
+    .title-company {
+      line-height: 28px;
+    }
+
+    .desc-app-company {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+}
+
+.wrapper-header-content-right {
+  flex-basis: 200px;
+
+  .header-content-right {
+    cursor: pointer;
+
+    img {
+      background: #fff;
+      border: solid 2px #aeaeae;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .header-content-right-text {
+      margin-left: 15px;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+
+      .username {
+        font-size: 16px;
+        line-height: 18px;
+      }
+
+      .role {
+        font-size: 12px;
+        font-style: italic;
+        line-height: 16px;
+      }
+    }
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header-content-left {
+    padding: 0 10px 0 10px;
+
+    .desc-app-company {
+      font-size: 14px;
+    }
+  }
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
