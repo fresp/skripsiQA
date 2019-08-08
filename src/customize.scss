@@ -11,24 +11,54 @@
     margin: 20px !important;
 }
 
+.marg-bottom-10 {
+    margin-bottom: 10px !important;
+}
+.marg-bottom-15 {
+    margin-bottom: 15px !important;
+}
+.marg-bottom-20 {
+    margin-bottom: 20px !important;
+}
+
+.marg-top-10 {
+    margin-top: 10px !important;
+}
+.marg-top-15 {
+    margin-top: 15px !important;
+}
+.marg-top-20 {
+    margin-top: 20px !important;
+}
+
 .margh10 {
-    margin: 0 10px;
+    margin: 0 10px !important;
 }
 .margh15 {
-    margin: 0 15px;
+    margin: 0 15px !important;
 }
 .margh20 {
-    margin: 0 20px;
+    margin: 0 20px !important;
 }
 
 .margv10 {
-    margin: 10px 0;
+    margin: 10px 0 !important;
 }
 .margv15 {
-    margin: 15px 0;
+    margin: 15px 0 !important;
 }
 .margv20 {
-    margin: 20px 0;
+    margin: 20px 0 !important;
+}
+
+.pad0 {
+    padding: 0 !important;
+}
+.padv10 {
+    padding: 10px 0 !important;
+}
+.padv15 {
+    padding: 15px 0 !important;
 }
 
 .text-left {
@@ -41,6 +71,15 @@
     text-align: center;
 }
 
+.symbol-required {
+    color: #E6674A;
+}
+.error-red {
+    color: mat-color($oneplus-app-warn);
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
 .bg-indigo {
     background-color: mat-color($oneplus-app-indigo) !important;
     color: white !important;
@@ -49,4 +88,106 @@
 .bg-blue {
     background-color: mat-color($oneplus-app-blue) !important;
     color: white !important;
+}
+
+.body-ewrap {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.ngx-pagination {
+    padding: 10px 15px  !important;
+    text-align: right;
+}
+.ngx-pagination .current{
+    padding: 0!important;
+    background-color: transparent !important;
+}
+.ngx-pagination > .ng-star-inserted > .ng-star-inserted {
+    font-size: 14px !important;
+    border-radius: 3px !important;
+    margin: 0 5px !important;
+    height: 30px;
+    display: inline-block;
+    padding: 5px 10px !important;
+}
+
+.ngx-pagination > .current > .ng-star-inserted {
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default;
+}
+
+.pagination-next a {
+    background-color: #2199e8 !important;
+    color: #ffffff !important;
+    padding: 5px 9px !important;
+    text-decoration: none !important;
+    height: 30px;
+    text-align: center;
+}
+
+.pagination-next a:hover,.pagination-next a:focus,.pagination-next a:active {
+    background-color: #3ca5ea !important;
+    color: #ffffff !important;
+}
+
+.pagination-next span {
+    background-color: #d2d2d2 !important;
+    color: #ffffff !important;
+    padding: 5px 9px !important;
+    text-decoration: none !important;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+}
+
+.pagination-previous span {
+    background-color: #d2d2d2 !important;
+    color: #ffffff !important;
+    padding: 5px 9px !important;
+    text-decoration: none !important;
+    height: 30px !important;
+    text-align: center !important;
+    display: inline-block !important;
+}
+
+.pagination-previous a {
+    background-color: #2199e8 !important;
+    color: #ffffff !important;
+    padding: 5px 9px !important;
+    text-decoration: none !important;
+    /* height: 30px; */
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+}
+
+.pagination-previous a:hover,.pagination-previous a:focus,.pagination-previous a:active {
+    background-color: #3ca5ea !important;
+    color: #ffffff !important;
+}
+
+.ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
+    content: '' !important;
+    margin: 0 !important;
+    display: none !important;
+}
+
+.ngx-pagination .pagination-next a::before, .ngx-pagination .pagination-next .disabled::before {
+    content: "" !important;
+    margin: 0 !important;
+    display: none !important;
+}
+
+.ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
+    content: "" !important;
+    margin: 0 !important;
+    display: none !important;
+}
+
+.ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
+    content: "" !important;
+    margin: 0 !important;
+    display: none !important;
 }

@@ -10,10 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class MainNavComponent {
   
-  isIssue = true;
   isMaster = true;
-  isUser = true;
-  isReport = true;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,15 +25,4 @@ export class MainNavComponent {
     this.isMaster = !this.isMaster;
   }
 
-  toggleIssue(){
-    this.isIssue = !this.isIssue;
-  }
-
-  toggleUser(){
-    this.isUser = !this.isUser;
-  }
-  
-  toggleReport(){
-    this.isReport = !this.isReport;
-  }
 }

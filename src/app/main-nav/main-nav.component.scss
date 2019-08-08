@@ -10,16 +10,6 @@
   .child-master {
     display: none;
   }
-  .child-user {
-    display: none;
-  }
-  .child-issue {
-    display: none;
-  }
-  .child-report {
-    display: none;
-  }
-
   .first-child {
     padding-left: 12px;
   }
@@ -61,7 +51,6 @@
     cursor: pointer;
 
     img {
-      background: #fff;
       border: solid 2px #aeaeae;
       border-radius: 50%;
       width: 35px;

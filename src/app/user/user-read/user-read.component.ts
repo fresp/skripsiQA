@@ -1,18 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import Swal from 'sweetalert2';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSpinner } from '@angular/material';
 import { UserData } from "./user.model";
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserInsertComponent } from '../user-insert/user-insert.component';
-
-  /** Constants used to fill up our data base. */
-  const COLORS: string[] = [
-    'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-    'aqua', 'blue', 'navy', 'black', 'gray'
-  ];
-  const NAMES: string[] = [
-    'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-    'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-  ];
+import global from '../../global';
+import 'sweetalert2/src/sweetalert2.scss';
+import { UserService } from 'src/app/services/user.service';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-user-read',
@@ -21,7 +16,14 @@ import { UserInsertComponent } from '../user-insert/user-insert.component';
 })
 export class UserReadComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  user: UserData[];
+  isLoadingResults = true;
+  url_image = global.url_img+"user/";
+
+  locstor = localStorage.getItem(global.user_db);
+  json_locstor = JSON.parse(this.locstor);
+
+  displayedColumns: string[] = ['action', 'company', 'salesgroup', 'employee_no', 'img_user', 'firstname', 'lastname', 'phone', 'email', 'role', 'publish', 'join_date']; //'create_date'
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -30,19 +32,38 @@ export class UserReadComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
-
-  ) {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+    private userService: UserService,
+    private logService: LogService
+  ) {}
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getList();
+  }
+
+  getList(){
+    let data = {
+      user_id: this.json_locstor.id,
+      auth_code: this.json_locstor.auth_code,
+      page: 1,
+      item: 10
+    }
+
+    this.userService.listUser(data).then(restData => {
+      console.log(restData);
+
+      if (restData.code = 200) {
+        this.user = restData.result.data;
+
+        this.isLoadingResults = false;
+
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(this.user);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+      
+    })
   }
 
   applyFilter(filterValue: string) {
@@ -54,29 +75,96 @@ export class UserReadComponent implements OnInit {
   }
 // end pagination
 
-  openDialogInsert(){
-    // this.router.navigate(['../user-insert'], {relativeTo: this.route});
-      const dialogRef = this.dialog.open(UserInsertComponent, {
-        width: '650px',
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
+  goToInsert(){
+    this.router.navigate(['../user-insert'], {relativeTo: this.route});
+  }
+
+  goToEdit(user_id: string){
+    this.router.navigate(["../user-edit", user_id], {relativeTo: this.route});
+  }
+
+  openDialogDelete(user_id: string, firstname: string, lastname: string){
+    let data = {
+      user_id: this.json_locstor.id,
+      auth_code: this.json_locstor.auth_code,
+      id: user_id
     }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        
+        this.userService.deleteUser(data).then(restData => {
+          if (restData.code == 200) {
+            Swal.fire(
+              'Deleted!',
+              'Your imaginary file has been deleted.',
+              'success'
+            ).then( () => {
+              this.getList();
+            })
+
+            let role = this.json_locstor.role;
+            let log = {
+              user_id: this.json_locstor.id,
+              auth_code: this.json_locstor.auth_code,
+              role: this.json_locstor.role,
+              actor: this.json_locstor.firstname+' '+this.json_locstor.lastname+'-'+role.toUpperCase(),
+              module: global.module.user,
+              action: global.action.delete,
+              object: firstname+" "+lastname,
+              status: true
+            }
+            
+            this.logService.insertLog(log).then(restLog => {
+              console.log("Success insert log", restLog);
+            }, err => {
+              console.log("Failed insert log", err);
+            });
+          }
+        }).catch( () => {
+          Swal.fire(
+            'Failed to delete!',
+            'Something wrong, Please try another time.',
+            'error'
+          )
+
+          let role = this.json_locstor.role;
+            let log = {
+              user_id: this.json_locstor.id,
+              auth_code: this.json_locstor.auth_code,
+              role: this.json_locstor.role,
+              actor: this.json_locstor.firstname+' '+this.json_locstor.lastname+'-'+role.toUpperCase(),
+              module: global.module.user,
+              action: global.action.delete,
+              object: firstname+" "+lastname,
+              status: false
+            }
+            
+            this.logService.insertLog(log).then(restLog => {
+              console.log("Success insert log", restLog);
+            }, err => {
+              console.log("Failed insert log", err);
+            });
+        })
+        
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    });
+
+  }
   
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-
 }

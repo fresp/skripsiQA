@@ -29,17 +29,111 @@ mat-form-field.outline-white {
     .mat-form-field-outline-thick{
         color: white !important;
     }
+    .mat-form-field-wrapper {
+        padding-bottom: 5px;
+    }
     
 }
 
-.container-breadcrumb {
-    .wrapper-breadcrumb {
-        padding-inline-start: 20px;
-        list-style-type: none;
+// form
+.alternative-mat-form-field-white-theme .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: white;
+}
+.alternative-mat-form-field-white-theme .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+    color: white;
+}
 
-        .active {
-            font-weight: 600;
-            color: #707070;
-        }
+//customize sweetalert
+.swal2-popup {
+    font-size: 1.5rem !important;
+}
+//end customize sweetalert
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.breadcrumb {
+    background-color: inherit;
+    margin-bottom: 0;
+    padding: 10px 20px;
+
+    li > a {
+        cursor: pointer;
+        color: mat-color($oneplus-app-warn);
+    }
+    // .wrapper-breadcrumb {
+    //     padding-inline-start: 20px;
+    //     list-style-type: none;
+
+    //     .active {
+    //         font-weight: 600;
+    //         color: #707070;
+    //     }
+    // }
+}
+
+.delete-on-edit {
+    cursor: pointer;
+    color: mat-color($oneplus-app-warn);
+}
+
+.mat-card-actions {
+    margin-bottom: 0px !important;
+}
+
+//custumize table
+th.mat-header-cell:first-of-type {
+    padding-top: 10px;
+    padding-right: 24px;
+    font-size: 14px !important;
+    color: black !important;
+    text-align: center;
+
+    .mat-sort-header-container {
+        justify-content: center;
     }
 }
+th.mat-header-cell {
+    padding-top: 10px !important;
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+    font-size: 14px !important;
+    color: black !important;
+}
+th.mat-header-cell:last-of-type {
+    padding-top: 10px;
+    padding-left: 14px !important;
+    font-size: 14px !important;
+    color: black !important;
+}
+
+td.mat-cell:first-of-type {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    text-align: center;
+}
+td.mat-cell {
+    padding-top: 10px !important;
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+}
+td.mat-cell:last-of-type {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+}
+
+//wrapper spinner
+.loading-shade {
+    min-height: 210px;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

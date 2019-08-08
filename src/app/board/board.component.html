@@ -1,21 +1,7 @@
-<div class="container-breadcrumb">
-    <ul class="wrapper-breadcrumb">
-        <li class="active">Board Management</li>
-    </ul>
-</div>
-              
-<div class="mat-elevation-z8 wrapper-table">
-    <div class="wrapper-filter">
-        <mat-form-field>
-            <mat-select placeholder="Select Project" name="item">
-              <mat-option *ngFor="let item of items" [value]="item.id">
-                  {{item.name}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-      
-</div>
+<ul class="breadcrumb">
+    <li class="active">Board > Aditya Project > Ticket > #HS-123912</li>
+</ul>
+
 <div class="wrapper-table">
   <div class="board" cdkDropList [cdkDropListData]="tracks" (cdkDropListDropped)="onTrackDrop($event)" cdkDropListOrientation="horizontal">
     <mat-card class="card-list mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--12-col-phone" *ngFor="let track of tracks; let i=index">

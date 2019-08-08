@@ -1,0 +1,42 @@
+.wrapper-card {
+    margin: 0 20px;
+}
+
+.wrapper-table {
+    margin: 20px;
+
+    .wrapper-filter {
+        background-color: white;
+        border-bottom: solid 1px rgb(204, 204, 204);
+        padding: 1.25em 1.25em 0 1.25em;
+    
+        .mat-form-field {
+            width: 40% !important;
+        }
+        .wrapper-button {
+            display: inline-block;
+            width: 60%;
+            text-align: right;
+        }
+    }
+
+    .table-responsive{
+        .mat-raised-button {
+            padding: 0 5px !important;
+            min-width: 20px !important;
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+td, th {
+    width: 10%;
+}
