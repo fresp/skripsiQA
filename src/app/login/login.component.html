@@ -32,6 +32,22 @@
             Password Minimum 8 character !
           </div>
         </div>
+
+        <mat-form-field appearance="outline" class="outline-white">
+          <mat-label>Type</mat-label>
+            <select matNativeControl name="type" ngModel #type="ngModel" required>
+                <option value="">-- Select Access --</option>
+                <option value="pm">Project Manager</option>
+                <option value="qa">Quality Assurance</option>
+                <option value="developer">Developer</option>
+            </select>
+        </mat-form-field>
+        <div class="error-white" *ngIf="type.invalid && (type.touched || type.dirty)">
+          <div *ngIf="type.errors.required">
+              This field is required !
+          </div>
+        </div>
+
       </div>
       <div class="wrapper-button">
           <button mat-raised-button type="submit">Login</button>

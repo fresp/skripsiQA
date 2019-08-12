@@ -19,8 +19,17 @@ export class LoginService {
         let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = {headers: headers};
         let body = this.utility.formData(data);
-
-        this.http.post(global.url_api + 'admin/login', body, options).subscribe(res => {
+        let pathUrl = "";
+        if(data.type == "pm") {
+            pathUrl = "pm/login";
+        } else if(data.type == "qa") {
+          pathUrl = "qa/login";
+        } else {
+          pathUrl = "user/login";
+          
+        }
+        this.http.post(global.url_api + pathUrl, body, options).subscribe(res => {
+          console.log(res);
           resolve(res);
         }, err => {
           reject(err);

@@ -13,10 +13,16 @@ let global = {
         category: "Category",
     },
 
-    url: 'http://185.201.9.160:8043/',
-    url_api: 'http://185.201.9.160:8043/api/v1/',
-    url_img: 'http://185.201.9.160:8043/upload/',
-    url_dev: 'http://185.201.9.160:8043/',
+    // url: 'http://185.201.9.160:8043/',
+    // url_api: 'http://185.201.9.160:8043/api/v1/',
+    // url_img: 'http://185.201.9.160:8043/upload/',
+    // url_dev: 'http://185.201.9.160:8043/',
+
+    url: 'http://localhost:8042/',
+    url_api: 'http://localhost:8042/api/v1/',
+    url_img: 'http://localhost:8042/upload/',
+    url_dev: 'http://localhost:8042/',
+
     // url_prod: 'http://185.201.9.175:8042/',
     // url_api_prod: 'http://185.201.9.175:8042/api/v1',
     // url_img_prod: 'http://185.201.9.175:8042/uploads/',

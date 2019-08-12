@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   user = {
     email: "",
-    password: ""
+    password: "",
+    type: ""
   }
 
   constructor(
@@ -38,15 +39,15 @@ export class LoginComponent implements OnInit {
 
       this.user.email = form.value.email;
       this.user.password = form.value.password;
+      this.user.type = form.value.type;
 
       this.loginService.login(this.user).then(restData => {
         console.log(restData);
         if(restData.code == 200) {
 
           let locstor = {
-            id: restData.result.id,
-            name: restData.result.name,
-            auth_code: restData.result.auth_code
+            user: restData.result.user,
+            tokens: restData.result.tokens
           }
           localStorage.setItem(global.user_db, JSON.stringify(locstor))
           this.router.navigate(["/secure"]);
