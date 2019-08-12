@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import global from "./global";
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'salestar-web';
-
+  
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-  ){}
-  
+  ) { }
+
+  ngOnInit() {
+  }
 }

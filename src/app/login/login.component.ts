@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import { UserData } from '../user/user-read/user.model';
 import { LoginService } from '../services/login.service';
 import global from "../global";
-import { MatSnackBar } from '@angular/material';
-import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +23,9 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
   ) { 
       if (localStorage.getItem(global.user_db) !== null) {
-        this.router.navigate(["secure"]);
+        this.router.navigate(["/secure"]);
       } else {
-        this.router.navigate(["login"]);
+        this.router.navigate(["/login"]);
       }
     }
 
@@ -46,14 +44,26 @@ export class LoginComponent implements OnInit {
         if(restData.code == 200) {
 
           let locstor = {
-            id: restData.result._id,
-            role: restData.result.role,
-            firstname: restData.result.firstname,
-            lastname: restData.result.lastname,
+            id: restData.result.id,
+            name: restData.result.name,
             auth_code: restData.result.auth_code
           }
           localStorage.setItem(global.user_db, JSON.stringify(locstor))
           this.router.navigate(["/secure"]);
+        }
+        else if(restData.code == 400){
+          this.snackbar.open('Invalid input', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 401){
+          this.snackbar.open('Login Failed', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
         }
         else if(restData.code == 405){
           this.snackbar.open('E-mail not registered', 'Close', {
@@ -62,7 +72,14 @@ export class LoginComponent implements OnInit {
             verticalPosition: "top"
           });
         }
-        else if(restData.code == 401){
+        else if(restData.code == 406){
+          this.snackbar.open('Account inactive', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 407){
           this.snackbar.open('Wrong Password', 'Close', {
             duration: 3000,
             horizontalPosition: "end",
@@ -81,8 +98,5 @@ export class LoginComponent implements OnInit {
       
     }
   }
-  
-  // goToLogin(){
-  //   this.router.navigate(["main"]);
-  // }
+
 }

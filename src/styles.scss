@@ -61,7 +61,7 @@ mat-form-field.outline-white {
 
     li > a {
         cursor: pointer;
-        color: mat-color($oneplus-app-warn);
+        color: mat-color($ng-app-warn);
     }
     // .wrapper-breadcrumb {
     //     padding-inline-start: 20px;
@@ -76,7 +76,7 @@ mat-form-field.outline-white {
 
 .delete-on-edit {
     cursor: pointer;
-    color: mat-color($oneplus-app-warn);
+    color: mat-color($ng-app-warn);
 }
 
 .mat-card-actions {

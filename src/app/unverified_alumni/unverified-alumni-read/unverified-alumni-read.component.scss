@@ -1,0 +1,48 @@
+.wrapper-card {
+    margin: 0 20px;
+}
+
+.wrapper-table {
+    margin: 20px;
+
+    .wrapper-filter {
+        background-color: white;
+        border-bottom: solid 1px rgb(204, 204, 204);
+        padding: 1.25em 1.25em 0 1.25em;
+    
+        .mat-form-field {
+            width: 40% !important;
+        }
+        .wrapper-button {
+            display: inline-block;
+            width: 60%;
+            text-align: right;
+
+            button { 
+                margin-left: 5px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .table-responsive{
+        .mat-raised-button {
+            padding: 0 5px !important;
+            margin: 0 5px 5px 0;
+            min-width: 20px !important;
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+td, th {
+    width: 25%;
+}

@@ -5,22 +5,55 @@
 $dark-primary-text: rgba(black, 0.87);
 $light-primary-text: white;
 
-$oneplus-app-green: mat-palette($mat-green);
-$oneplus-app-blue: mat-palette($mat-blue);
-$oneplus-app-yellow: mat-palette($mat-yellow);
-$oneplus-app-grey: mat-palette($mat-grey);
-$oneplus-app-indigo: mat-palette($mat-indigo);
-
-$oneplus-app-primary: mat-palette($mat-indigo);
-$oneplus-app-accent: mat-palette($mat-orange);
-$oneplus-app-warn: mat-palette($mat-blue);
-$oneplus-app-theme: mat-light-theme(
-  $oneplus-app-primary,
-  $oneplus-app-accent,
-  $oneplus-app-warn
+$mat-myred: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ff8a80,
+  300: #b34c4c,
+  400: #ad2a2a,
+  500: #a32020,
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #b34c4c,
+  A400: #ad2a2a,
+  A700: #a32020,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
 );
 
-@include angular-material-theme($oneplus-app-theme);
+$ng-app-green: mat-palette($mat-green);
+$ng-app-blue: mat-palette($mat-blue);
+$ng-app-yellow: mat-palette($mat-yellow);
+$ng-app-grey: mat-palette($mat-grey);
+$ng-app-indigo: mat-palette($mat-indigo);
+
+$ng-app-primary: mat-palette($mat-blue);
+$ng-app-accent: mat-palette($mat-orange);
+$ng-app-warn: mat-palette($mat-deep-orange);
+$ng-app-theme: mat-light-theme(
+  $ng-app-primary,
+  $ng-app-accent,
+  $ng-app-warn
+);
+
+@include angular-material-theme($ng-app-theme);
 
 .alternative-mat-form-field-white-theme {
     $form-field-white-primary: mat-palette($mat-grey, A100);
@@ -33,9 +66,3 @@ $oneplus-app-theme: mat-light-theme(
 
     @include mat-form-field-theme($form-field-white-theme);
 }
-
-// $form-field-indigo-theme: mat-light-theme(
-//     $oneplus-app-indigo,
-//     $oneplus-app-blue
-// );
-// @include mat-form-field-theme($form-field-indigo-theme);

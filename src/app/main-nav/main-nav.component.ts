@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UtilityService } from '../services/utility.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -9,8 +10,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent {
-  
-  isMaster = true;
+
+  isAlumni = true;
+  isAlumniVerif = true;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,10 +21,18 @@ export class MainNavComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-  ) {}
-  
-  toggleMaster(){
-    this.isMaster = !this.isMaster;
+    private utilityService: UtilityService,
+
+  ) {
+    this.utilityService.checkSession();
+  }
+
+  toggleAlumni(){
+    this.isAlumni = !this.isAlumni;
+  }
+
+  toogleLogout(){
+    this.utilityService.logout();
   }
 
 }

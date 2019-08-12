@@ -1,0 +1,124 @@
+<ul class="breadcrumb">
+    <li class="active">User Management</li>
+</ul>
+              
+<div class="mat-elevation-z8 wrapper-table">
+    <div class="wrapper-filter">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="isLoadingResults" class="loading-shade">
+        <mat-spinner></mat-spinner>
+    </div>
+    
+    <mat-table *ngIf="!isLoadingResults" class="table-responsive" mat-table [dataSource]="dataSource" matSort> 
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let row"> 
+              <button mat-raised-button class="bg-old-green" (click)="goToVerify(row.id)"><mat-icon>verified_user</mat-icon></button>
+              <button mat-raised-button color="primary" (click)="goToReject(row.id)"><mat-icon>close</mat-icon></button>
+              <button mat-raised-button class="bg-indigo" (click)="goToEdit(row.id)"><mat-icon>edit</mat-icon></button>
+              <button mat-raised-button color="warn" (click)="openDialogDelete(row.id)"><mat-icon>delete</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <!-- Photo Column -->
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> Photo </th>
+            <td mat-cell *matCellDef="let row">
+              <ng-container *ngIf="row.img != ''; else elseTemplate">
+                <img class="img-circle" src="{{url_image + row.img}}" alt="User Photo" width="50" height="50">
+              </ng-container>
+              <ng-template #elseTemplate>
+                <img class="img-circle" src="../../../assets/image/anonymous.jpg" alt="User Photo" width="50" height="50">
+              </ng-template>               
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+        </ng-container>
+
+        <!-- Batch Column -->
+        <ng-container matColumnDef="batch">
+            <th mat-header-cell *matHeaderCellDef> Batch </th>
+            <td mat-cell *matCellDef="let row"> {{row.batch}} </td>
+        </ng-container>
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="type_alumni">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let row">
+                <span *ngIf="row.type_alumni == 'alumni'">Alumni</span>
+                <span *ngIf="row.type_alumni == 'internal'">Internal User</span>
+                <span *ngIf="row.type_alumni == 'external'">External User</span>
+            </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+        </ng-container>
+
+        <!-- EULA Column -->
+        <ng-container matColumnDef="eula">
+            <th mat-header-cell *matHeaderCellDef> EULA </th>
+            <td mat-cell *matCellDef="let row"> 
+                <mat-checkbox [checked]="row.eula == 1" [disableRipple]="true" (click)="$event.preventDefault()"></mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!-- EULA VERSION Column -->
+        <ng-container matColumnDef="eula_version">
+            <th mat-header-cell *matHeaderCellDef> EULA Version </th>
+            <td mat-cell *matCellDef="let row"> 
+              <mat-checkbox [checked]="row.eula_version == 1" [disableRipple]="true" (click)="$event.preventDefault()"></mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!-- EULA Eula Date -->
+        <ng-container matColumnDef="uela_agree_date">
+            <th mat-header-cell *matHeaderCellDef> EULA Agree Date </th>
+            <td mat-cell *matCellDef="let row"> 
+                <mat-checkbox [checked]="row.eula_date == 1" [disableRipple]="true" (click)="$event.preventDefault()"></mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!-- Publish Column -->
+        <ng-container matColumnDef="publish">
+            <th mat-header-cell *matHeaderCellDef> Publish </th>
+            <td mat-cell *matCellDef="let row"> <span *ngIf="row.publish == 1">Publish</span> </td>
+            <td mat-cell *matCellDef="let row"> <span *ngIf="row.publish == 0">Not Publish</span> </td>
+        </ng-container>
+        
+        <!-- Join Date Column -->
+        <ng-container matColumnDef="create_date">
+            <th mat-header-cell *matHeaderCellDef> Create Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.join_date}} </td>
+        </ng-container>
+              
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+              
+    <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+</div>

@@ -20,7 +20,7 @@ export class LoginService {
         let options = {headers: headers};
         let body = this.utility.formData(data);
 
-        this.http.post(global.url_api + 'user/login', body, options).subscribe(res => {
+        this.http.post(global.url_api + 'admin/login', body, options).subscribe(res => {
           resolve(res);
         }, err => {
           reject(err);

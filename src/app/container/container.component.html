@@ -1,0 +1,27 @@
+<mat-toolbar class="container-toolbar">
+  <mat-grid-list cols="cols" rowHeight="heightpx">
+    <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      {{tile.text}}>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="wrapper-title">
+      <h3 class="title-company">Issues Tracking</h3>
+      <span class="desc-app-company">Alumnus Management System</span>
+  </div>
+  <div class="wrapper-profile">
+    <img src="../../assets/image/PricewaterhouseCoopers_Logo.png" alt="User Profile">
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="container" [hasBackdrop]="false">
+  <mat-sidenav #sidenav mode="side" opened>
+    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
