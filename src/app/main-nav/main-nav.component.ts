@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UtilityService } from '../services/utility.service';
+import global from "../global";
+
 
 @Component({
   selector: 'app-main-nav',
@@ -13,6 +15,10 @@ export class MainNavComponent {
 
   isAlumni = true;
   isAlumniVerif = true;
+
+  locstor = localStorage.getItem(global.user_db);
+  json_locstor = JSON.parse(this.locstor);
+  
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

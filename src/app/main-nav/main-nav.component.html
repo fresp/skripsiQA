@@ -47,8 +47,8 @@
         <div class="header-content-right" [matMenuTriggerFor]="belowMenu">
             <img src="../../assets/image/PricewaterhouseCoopers_Logo.png" alt="User Profile">
             <div class="header-content-right-text">
-              <div class="username">Freza Nugraha</div>
-              <div class="role">Project Manager</div>
+              <div class="username">{{json_locstor.user.firstname}} {{json_locstor.user.firstname}}</div>
+              <div class="role">{{json_locstor.role}}</div>
             </div>
         </div>
         <mat-menu #belowMenu="matMenu">
