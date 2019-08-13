@@ -44,9 +44,17 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.user).then(restData => {
         console.log(restData);
         if(restData.code == 200) {
-
+          let role;
+          if(this.user.type == "pm"){
+            role = "Project Manager";
+          } else if(this.user.type == "qa"){
+            role = "Quality Assurance";
+          } else {
+            role = "Developer";
+          }
           let locstor = {
             user: restData.result.user,
+            role : role,
             tokens: restData.result.tokens
           }
           localStorage.setItem(global.user_db, JSON.stringify(locstor))

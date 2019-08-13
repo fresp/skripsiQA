@@ -52,6 +52,9 @@ import { VerifiedAlumniEditComponent } from './verified-alumni-edit/verified-alu
 
 import { BoardComponent } from './board/board.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
+import { UserPmReadComponent } from './user-pm/user-pm-read/user-pm-read.component';
+import { UserPmInsertComponent } from './user-pm/user-pm-insert/user-pm-insert.component';
+import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
     VerifiedAlumniEditComponent,
 
     BoardComponent,
-    BoardDetailComponent
+    BoardDetailComponent,
+    UserPmReadComponent,
+    UserPmInsertComponent,
+    UserPmEditComponent
   ],
   imports: [
     BrowserModule,
