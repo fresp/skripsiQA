@@ -1,0 +1,207 @@
+<ul class="breadcrumb">
+  <li><a (click)="goToBack()">Project Manager's Management Management</a></li>
+  <li class="active">Edit Project Manager's Management</li>
+</ul>
+<mat-card class="wrapper-card">
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm" enctype="multipart/form-data">
+      <mat-card-header>
+          <mat-card-title>Edit Project Manager's Management</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+          <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>First Name <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput name="firstname" ngModel="{{projectManager.firstname}}" #firstname="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)">
+                    <div *ngIf="firstname.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Last Name <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput name="lastname" ngModel="{{projectManager.firstname}}" #lastname="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)">
+                    <div *ngIf="lastname.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Name <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput name="alumni_name" ngModel="{{invited_alumni.name}}" #alumni_name="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="alumni_name.invalid && (alumni_name.touched || alumni_name.dirty)">
+                    <div *ngIf="alumni_name.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 col-xs-12 text-right">
+              <strong>E-mail <span class="symbol-required">*</span> : </strong>
+          </div>
+          <div class="col-sm-5 col-xs-12">
+              <mat-form-field appearance="outline">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput placeholder="E-mail" name="email" ngModel="{{invited_alumni.email}}" #email="ngModel" email required>
+              </mat-form-field>
+              <div class="error-red" *ngIf="email.invalid && (email.touched || email.dirty)">
+                  <div *ngIf="email.errors.required">
+                      This field is required !
+                  </div>
+                  <div *ngIf="!email.errors.valid && email.dirty">
+                      Please enter a valid email !
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 col-xs-12 text-right">
+              <strong>Gender <span class="symbol-required">*</span> : </strong>
+          </div>
+          <div class="col-sm-5 col-xs-12">
+              <mat-form-field>
+                  <mat-label>Gender</mat-label>
+                  <select matNativeControl name="gender" ngModel="{{invited_alumni.gender}}" #gender="ngModel" required>
+                      <option value="">-- Select Gender --</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                  </select>
+              </mat-form-field>
+              <div class="error-red" *ngIf="gender.invalid && (gender.touched || gender.dirty)">
+                  <div *ngIf="gender.errors.required">
+                      This field is required !
+                  </div>
+              </div>
+          </div>
+        </div>
+          <div class="row">
+              <div class="col-sm-2 col-xs-12 text-right">
+                  Company :
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Company</mat-label>
+                      <input matInput name="company" ngModel="{{invited_alumni.company}}" #company="ngModel">
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                Position :
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Position</mat-label>
+                    <input matInput name="position" ngModel="{{invited_alumni.position}}" #position="ngModel">
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2 col-xs-12 text-right">
+                  Phone :
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Phone</mat-label>
+                      <input matInput placeholder="Phone Number" name="phone" ngModel="{{invited_alumni.phone}}" #phone="ngModel">
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2 col-xs-12 text-right">
+                  Date of Birth :
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                  <mat-form-field>
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput name="dob" ngModel="{{invited_alumni.dob}}" #dob="ngModel" [matDatepicker]="dp_dob" placeholder="Input disabled">
+                    <mat-datepicker-toggle matSuffix [for]="dp_dob"></mat-datepicker-toggle>
+                    <mat-datepicker #dp_dob disabled="false"></mat-datepicker>
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-2 col-xs-12 text-right">
+                  Line of Service :
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                  <mat-form-field>
+                      <mat-label>Line of Service</mat-label>
+                      <select matNativeControl name="line" ngModel="{{invited_alumni.lineservice_id}}" #line="ngModel">
+                          <option value="">-- Select Line of Service --</option>
+                          <option *ngFor="let line_service of line_services" value="{{line_service.id}}">{{line_service.title}}</option>
+                      </select>
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                Image : 
+            </div>
+            <div class="col-sm-5 col-xs-12 marg-bottom-20">
+                <ng-container *ngIf="invited_alumni.img != ''; else elseTemplate">
+                    <img src="{{url_image + invited_alumni.img}}" class="img-thumbnail marg-bottom-10" alt="User Photo" width="220" height="220">
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <img src="../../../assets/image/anonymous.jpg" class="img-thumbnail marg-bottom-10" alt="User Photo" width="220" height="220">
+                </ng-template>
+                <input type="file" (change)="onSelectedImage($event)" placeholder="Image" name="image" ngModel #image="ngModel">
+            </div>
+        </div>
+          <div class="row">
+              <div class="col-sm-2 col-xs-12 text-right">
+                  <strong>Publish <span class="symbol-required">*</span> : </strong>
+              </div>
+              <div class="col-sm-5 col-xs-12">
+                  <mat-form-field>
+                      <mat-label>Publish</mat-label>
+                      <select matNativeControl name="publish" ngModel="{{invited_alumni.publish}}" #publish="ngModel" required>
+                          <option value="1">Publish</option>
+                          <option value="0">Not Publish</option>
+                      </select>
+                  </mat-form-field>
+                  <div class="error-red" *ngIf="publish.invalid && (publish.touched || publish.dirty)">
+                      <div *ngIf="publish.errors.required">
+                          This field is required !
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+          <div class="row">
+              <div class="col-sm-3 col-xs-2 pad0">
+                  <a class="delete-on-edit" color="warn">Delete</a>
+              </div>
+              <div class="col-sm-9 col-xs-10 pad0 text-right">
+                  <button mat-raised-button (click)="goToBack()">Cancel</button>
+                  <button mat-raised-button color="primary" type="submit">Update</button>
+              </div>
+          </div>
+      </mat-card-actions>
+  </form>
+</mat-card>
