@@ -15,6 +15,8 @@ export class MainNavComponent {
 
   isAlumni = true;
   isAlumniVerif = true;
+  isProjectManager = true;
+  isReport = true;
 
   locstor = localStorage.getItem(global.user_db);
   json_locstor = JSON.parse(this.locstor);
@@ -35,6 +37,14 @@ export class MainNavComponent {
 
   toggleAlumni(){
     this.isAlumni = !this.isAlumni;
+  }
+
+  toggleProjectManager(){
+    this.isProjectManager = !this.isProjectManager;
+  }
+
+  toggleReport(){
+    this.isReport = !this.isReport;
   }
 
   toogleLogout(){

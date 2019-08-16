@@ -72,6 +72,7 @@ export class UserPmEditComponent implements OnInit {
       if (restData.code == 200) {
         this.projectManager = restData.result;
         this.projectManager.img = restData.result.img;
+        this.projectManager.password = '';
         console.log("Ini detail user", this.projectManager);
       }
     }).then( () => {
@@ -114,7 +115,7 @@ export class UserPmEditComponent implements OnInit {
         this.projectManager_edit.firstname = form.value.firstname;
         this.projectManager_edit.lastname = form.value.lastname;
         this.projectManager_edit.status = form.value.status;
-        this.projectManager_edit.password = form.value.password;
+        // this.projectManager_edit.password = form.value.password;
         // var date = new Date();
         // date.toISOString
         
@@ -135,7 +136,7 @@ export class UserPmEditComponent implements OnInit {
             });
           }
           else if(restData.code == 400){
-            this.snackbar.open('Insert failed, please try again', 'Close', {
+            this.snackbar.open('Update failed, please try again', 'Close', {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"

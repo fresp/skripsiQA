@@ -23,7 +23,7 @@ export class UserPmReadComponent implements OnInit {
   locstor = localStorage.getItem(global.user_db);
   json_locstor = JSON.parse(this.locstor);
 
-  displayedColumns: string[] = ['action', 'firstname', 'email', 'status','created_date'];
+  displayedColumns: string[] = ['action', 'photo','firstname', 'email', 'status','created_date'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

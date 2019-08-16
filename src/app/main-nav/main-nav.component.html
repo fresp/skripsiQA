@@ -5,25 +5,50 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item (click)="toggleAlumni()">
-        <mat-icon aria-hidden="false" aria-label="Alumni Icon">group</mat-icon> <span class="menu-list-name">Alumni List</span>
-        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isAlumni == true">expand_more</mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isAlumni == false">expand_less</mat-icon>
-      </a>
-          <!-- Start Submenu Master -->
-          <a mat-list-item routerLink="invited-alumni" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isAlumni}">
-            <mat-icon aria-hidden="false" aria-label="Invited Alumni Icon">group_add</mat-icon> <span class="menu-list-name">Invited Alumni List</span>
-          </a>
 
-          <a mat-list-item class="first-child" (click)="toggleAlumniVerif()" [ngClass]="{'child-master': isAlumni}">
-              <mat-icon aria-hidden="false" aria-label="Alumni Icon">assignment_ind</mat-icon> <span class="menu-list-name">Alumni Verification</span>
-              <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isAlumniVerif == true">expand_more</mat-icon>
-              <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isAlumniVerif == false">expand_less</mat-icon>
-          </a>
-              <a mat-list-item routerLink="unverified-alumni" routerLinkActive="active" class="second-child" [ngClass]="{'child-master': isAlumniVerif}">
-                <mat-icon aria-hidden="false" aria-label="Unverified Alumni Icon">people_outline</mat-icon> <span class="menu-list-name">Unverified Alumni List</span>
-              </a>
-          <!-- End Submenu Master -->
+      <a mat-list-item (click)="toggleProjectManager()">
+        <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">User</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isProjectManager == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isProjectManager == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu Master -->
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+        <mat-icon aria-hidden="false" aria-label="Project Manager Icon">group_add</mat-icon> <span class="menu-list-name">Project Manager List</span>
+      </a>
+
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon">group_add</mat-icon> <span class="menu-list-name">Quality Assurance List</span>
+      </a>
+
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Developer List</span>
+      </a>
+      
+      <!-- Start Board COmponent -->
+      <a mat-list-item routerLink="board" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Board</span>
+      </a>
+      <!-- End Board Component -->
+
+      <!-- start report -->
+      <a mat-list-item (click)="toggleReport()">
+        <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">Report</span>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == true">expand_more</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == false">expand_less</mat-icon>
+      </a>
+      <!-- Start Submenu Master -->
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
+        <mat-icon aria-hidden="false" aria-label="Project Manager Icon">group_add</mat-icon> <span class="menu-list-name">Report A</span>
+      </a>
+
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
+        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon">group_add</mat-icon> <span class="menu-list-name">Report B</span>
+      </a>
+
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
+        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Report C</span>
+      </a>
+      <!-- End Submenu Master -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -40,7 +65,7 @@
       <div class="wrapper-header-content">
         <div class="header-content-left">
           <div class="title-company">Issues Tracking</div>
-          <div class="desc-app-company">Alumnus Management System</div>
+          <div class="desc-app-company">Issues Tracking Management System</div>
         </div>
       </div>
       <div class="wrapper-header-content-right text-right">

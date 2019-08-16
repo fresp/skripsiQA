@@ -84,36 +84,23 @@ export class UserPmService {
   //Invited Alumni Edit
   editProjectManager(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
+        let headers = new HttpHeaders({
+          'Authorization' : 'bearer '+this.json_locstor.tokens,
+        });
+        let options = {headers: headers};
         const body = new FormData();
     
-        body.append("user_id", data.user_id);
-        body.append("auth_code", data.auth_code);
-        body.append("type", data.type_alumni);
-        body.append("name", data.alumni_name);
+        body.append("firstname", data.firstname);
+        body.append("lastname", data.lastname);
         body.append("email", data.email);
-        body.append("gender", data.gender);
-        if (data.company != "" || data.company != null) {
-          body.append("company", data.company);
-        }
-        if (data.position != "" || data.position != null) {
-          body.append("position", data.position);
-        }
-        if (data.phone != "" || data.phone != null) {
-          body.append("phone", data.phone);
-        }
-        if (data.dob != "" || data.dob != null) {
-          body.append("dob", data.dob);
-        }
-        if (data.lineservice_id != "" || data.lineservice_id != null) {
-          body.append("lineservice_id", data.lineservice_id);
-        }
+        body.append("status", data.status);
+     
         if (data.img != "" || data.img != null) {
           body.append("img", data.img, data.img.name);
         }
-        body.append("publish", data.publish);
         body.append("id", data.id);
 
-        this.http.put(global.url_api + 'pm/', body).subscribe(res => {
+        this.http.put(global.url_api + 'pm/', body, options).subscribe(res => {
           resolve(res);
         }, err => {
           reject(err);

@@ -27,7 +27,7 @@
       </ng-container>
 
       <!-- Photo Column -->
-      <!-- <ng-container matColumnDef="photo">
+      <ng-container matColumnDef="photo">
           <th mat-header-cell *matHeaderCellDef> Photo </th>
           <td mat-cell *matCellDef="let row">
               <ng-container *ngIf="row.img != ''; else elseTemplate">
@@ -37,7 +37,7 @@
                   <img class="img-circle" src="../../../assets/image/anonymous.jpg" alt="User Photo" width="50" height="50">
               </ng-template>
           </td>
-      </ng-container> -->
+      </ng-container>
 
       <!-- firstname Column -->
       <ng-container matColumnDef="firstname">
@@ -62,8 +62,8 @@
       <!-- status Column -->
       <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef> status </th>
-          <td mat-cell *matCellDef="let row"> <span *ngIf="row.status == 'active'">Active</span> </td>
-          <td mat-cell *matCellDef="let row"> <span *ngIf="row.status == 'deactive'">Not Active</span> </td>
+          <td mat-cell *matCellDef="let row"> <span *ngIf="row.status == '1'">Active</span> </td>
+          <td mat-cell *matCellDef="let row"> <span *ngIf="row.status == '0'">Not Active</span> </td>
       </ng-container>
       
       <!-- Join Date Column -->
