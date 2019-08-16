@@ -60,6 +60,10 @@ import { UserQaReadComponent } from './user-qa/user-qa-read/user-qa-read.compone
 import { UserQaInsertComponent } from './user-qa/user-qa-insert/user-qa-insert.component';
 import { UserQaEditComponent } from './user-qa/user-qa-edit/user-qa-edit.component';
 
+import { UserDeveloperReadComponent } from './user-developer/user-developer-read/user-developer-read.component';
+import { UserDeveloperInsertComponent } from './user-developer/user-developer-insert/user-developer-insert.component';
+import { UserDeveloperEditComponent } from './user-developer/user-developer-edit/user-developer-edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,9 +85,14 @@ import { UserQaEditComponent } from './user-qa/user-qa-edit/user-qa-edit.compone
     UserPmReadComponent,
     UserPmInsertComponent,
     UserPmEditComponent,
+    
     UserQaReadComponent,
     UserQaInsertComponent,
-    UserQaEditComponent
+    UserQaEditComponent,
+    
+    UserDeveloperReadComponent,
+    UserDeveloperInsertComponent,
+    UserDeveloperEditComponent
   ],
   imports: [
     BrowserModule,

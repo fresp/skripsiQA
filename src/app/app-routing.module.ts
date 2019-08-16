@@ -16,9 +16,14 @@ import { BoardDetailComponent } from "./board-detail/board-detail.component";
 import { UserPmInsertComponent } from './user-pm/user-pm-insert/user-pm-insert.component';
 import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.component';
 import { UserPmReadComponent } from './user-pm/user-pm-read/user-pm-read.component';
+
 import { UserQaInsertComponent } from './user-qa/user-qa-insert/user-qa-insert.component';
 import { UserQaEditComponent } from './user-qa/user-qa-edit/user-qa-edit.component';
 import { UserQaReadComponent } from './user-qa/user-qa-read/user-qa-read.component';
+
+import { UserDeveloperInsertComponent } from './user-developer/user-developer-insert/user-developer-insert.component';
+import { UserDeveloperEditComponent } from './user-developer/user-developer-edit/user-developer-edit.component';
+import { UserDeveloperReadComponent } from './user-developer/user-developer-read/user-developer-read.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -44,6 +49,11 @@ const routes: Routes = [
     { path: 'staffQA', component: UserQaReadComponent },
     { path: 'staffQA-insert', component: UserQaInsertComponent },
     { path: 'staffQA-edit/:id', component: UserQaEditComponent },
+
+
+    { path: 'staffDeveloper', component: UserDeveloperReadComponent },
+    { path: 'staffDeveloper-insert', component: UserDeveloperInsertComponent },
+    { path: 'staffDeveloper-edit/:id', component: UserDeveloperEditComponent },
 
 
 
