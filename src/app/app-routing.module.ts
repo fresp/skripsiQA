@@ -16,6 +16,9 @@ import { BoardDetailComponent } from "./board-detail/board-detail.component";
 import { UserPmInsertComponent } from './user-pm/user-pm-insert/user-pm-insert.component';
 import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.component';
 import { UserPmReadComponent } from './user-pm/user-pm-read/user-pm-read.component';
+import { UserQaInsertComponent } from './user-qa/user-qa-insert/user-qa-insert.component';
+import { UserQaEditComponent } from './user-qa/user-qa-edit/user-qa-edit.component';
+import { UserQaReadComponent } from './user-qa/user-qa-read/user-qa-read.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,6 +41,9 @@ const routes: Routes = [
     { path: 'projectManager-insert', component: UserPmInsertComponent },
     { path: 'projectManager-edit/:id', component: UserPmEditComponent },
 
+    { path: 'staffQA', component: UserQaReadComponent },
+    { path: 'staffQA-insert', component: UserQaInsertComponent },
+    { path: 'staffQA-edit/:id', component: UserQaEditComponent },
 
 
 

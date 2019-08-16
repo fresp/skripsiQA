@@ -56,6 +56,10 @@ import { UserPmReadComponent } from './user-pm/user-pm-read/user-pm-read.compone
 import { UserPmInsertComponent } from './user-pm/user-pm-insert/user-pm-insert.component';
 import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.component';
 
+import { UserQaReadComponent } from './user-qa/user-qa-read/user-qa-read.component';
+import { UserQaInsertComponent } from './user-qa/user-qa-insert/user-qa-insert.component';
+import { UserQaEditComponent } from './user-qa/user-qa-edit/user-qa-edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +80,10 @@ import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.compone
     BoardDetailComponent,
     UserPmReadComponent,
     UserPmInsertComponent,
-    UserPmEditComponent
+    UserPmEditComponent,
+    UserQaReadComponent,
+    UserQaInsertComponent,
+    UserQaEditComponent
   ],
   imports: [
     BrowserModule,
