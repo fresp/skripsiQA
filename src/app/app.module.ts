@@ -50,8 +50,7 @@ import { VerifiedAlumniReadComponent } from './verified-alumni-read/verified-alu
 import { VerifiedAlumniEditComponent } from './verified-alumni-edit/verified-alumni-edit.component';
 
 
-import { BoardComponent } from './board/board.component';
-import { BoardDetailComponent } from './board-detail/board-detail.component';
+// import { BoardComponent } from './board/board.component';
 import { UserPmReadComponent } from './user-pm/user-pm-read/user-pm-read.component';
 import { UserPmInsertComponent } from './user-pm/user-pm-insert/user-pm-insert.component';
 import { UserPmEditComponent } from './user-pm/user-pm-edit/user-pm-edit.component';
@@ -64,6 +63,13 @@ import { UserDeveloperReadComponent } from './user-developer/user-developer-read
 import { UserDeveloperInsertComponent } from './user-developer/user-developer-insert/user-developer-insert.component';
 import { UserDeveloperEditComponent } from './user-developer/user-developer-edit/user-developer-edit.component';
 
+import { BoardReadComponent } from './board/board-read/board.component';
+import { BoardInsertComponent } from './board/board-insert/board-insert.component';
+import { BoardEditComponent } from './board/board-edit/board-edit.component';
+import { BoardDetailComponent } from './board/board-detail/board-detail.component';
+
+import { TicketInsertComponent } from './ticket/ticket-insert/ticket-insert.component';
+import { TicketEditComponent } from './ticket/ticket-edit/ticket-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +86,6 @@ import { UserDeveloperEditComponent } from './user-developer/user-developer-edit
     VerifiedAlumniReadComponent,
     VerifiedAlumniEditComponent,
 
-    BoardComponent,
     BoardDetailComponent,
     UserPmReadComponent,
     UserPmInsertComponent,
@@ -92,7 +97,13 @@ import { UserDeveloperEditComponent } from './user-developer/user-developer-edit
     
     UserDeveloperReadComponent,
     UserDeveloperInsertComponent,
-    UserDeveloperEditComponent
+    UserDeveloperEditComponent,
+
+    BoardReadComponent,
+    BoardInsertComponent,
+    BoardEditComponent,
+    TicketInsertComponent,
+    TicketEditComponent
   ],
   imports: [
     BrowserModule,

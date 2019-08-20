@@ -1,15 +1,27 @@
+
 <ul class="breadcrumb">
-    <li class="active">Board > Aditya Project > Ticket > #HS-123912</li>
+    <li><a (click)="goToBack()">Board Management</a></li>
+    <li class="active"> Aditya Project</li>
 </ul>
 
 <div class="wrapper-table">
+  <div class="wrapper-filter">
+      <mat-form-field>
+          <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
+      </mat-form-field>
+      <div class="wrapper-button">
+          <button (click)="goToInsert()" mat-raised-button class="bg-blue"><mat-icon>add</mat-icon> Add New Board</button>
+          <!-- <button (click)="openDialogImport()" mat-raised-button class="bg-green"><mat-icon>get_app</mat-icon> Import Alumni </button>
+          <button (click)="openDialogExport()" mat-raised-button class="bg-old-green"><mat-icon>publish</mat-icon> Export Alumni </button> -->
+      </div>
+  </div>     
   <div class="board" cdkDropList [cdkDropListData]="tracks" (cdkDropListDropped)="onTrackDrop($event)" cdkDropListOrientation="horizontal">
     <mat-card class="card-list mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--12-col-phone" *ngFor="let track of tracks; let i=index">
       <mat-card-title>
         <h2 cdkDragHandle class="mdl-card__title-text">{{track.title}}</h2> 
       </mat-card-title>
       <div>
-        <div  cdkDropList [id]="track.id" [cdkDropListData]="track.tasks"
+        <div  cdkDropList [id]="track.key" [cdkDropListData]="track.tasks"
           [cdkDropListConnectedTo]="trackIds" (cdkDropListDropped)="onTalkDrop($event)" style="min-height: 80px">
             <mat-card class="no-data" *ngIf="track.tasks.length == 0"  Style="background: rgb(182, 182, 182)" >
               <!-- Use the mat-card-content to add the proper spacing. -->
@@ -28,7 +40,7 @@
                     <div  class="description">{{task.description}}</div>
                 </mat-card-content>
                 <mat-card-content>
-                  <a [routerLink]="['/secure/board/'+task.priority+'/ticket/'+task.ticket_number]">View Detail <i class="material-icons">chevron_right</i></a>
+                  <a (click)="goToTicketDetail(task.id)">View Detail <i class="material-icons">chevron_right</i></a>
                 </mat-card-content>
               </mat-card>
               

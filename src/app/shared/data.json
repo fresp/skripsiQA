@@ -79,20 +79,7 @@
       ]
     },
     {
-      "title": "Done",
-      "id": "qapass1",
-      "background" : "#abfc1b",
-      "tasks": [
-        {
-          "id": "qa",
-          "title": "qaPass",
-          "description": "This is my qaPass",
-          "priority": "critical"
-        }
-      ]
-    },
-    {
-      "title": "QA Pass",
+      "title": "Inreview",
       "id": "qapass3",
       "background" : "#fbfc2b",
       "tasks": [
@@ -106,13 +93,12 @@
       ]
     },
     {
-      "title": "QA Pass",
-      "id": "qapass4",
-      "background" : "#acfc2b",
+      "title": "Done",
+      "id": "qapass1",
+      "background" : "#abfc1b",
       "tasks": [
         {
           "id": "qa",
-          "ticket_number": "HS-91823-1293",
           "title": "qaPass",
           "description": "This is my qaPass",
           "priority": "critical"
