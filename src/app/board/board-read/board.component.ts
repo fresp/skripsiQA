@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BoardService } from 'src/app/services/board.service';
+import { UtilityService } from 'src/app/services/utility.service';
 import { UserData } from './board.model';
 import global from "../../global";
 
@@ -33,6 +34,7 @@ export class BoardReadComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private boardService: BoardService,
+    private utilityService: UtilityService,
     // private logService: LogService
   ) {}
 
@@ -49,7 +51,7 @@ export class BoardReadComponent implements OnInit {
     this.boardService.listData(data).then(restData => {
       console.log(restData);
 
-      if (restData.code = 200) {
+      if (restData.code == 200) {
         this.user = restData.result.data;
 
         this.isLoadingResults = false;
@@ -59,6 +61,8 @@ export class BoardReadComponent implements OnInit {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+      } else if(restData.code == 403){
+        this.utilityService.checkExpired(restData);
       }
       
     })

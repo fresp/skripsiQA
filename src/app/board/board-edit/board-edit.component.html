@@ -78,20 +78,40 @@
               </div>
           </div>
 
-          <div class="row">
+        <div class="row">
             <div class="col-sm-2 col-xs-12 text-right">
                 <strong>Assign Staff QA <span class="symbol-required">*</span> : </strong>
             </div>
             <div class="col-sm-5 col-xs-12">
                 <mat-form-field>
                     <mat-label>Assign Staff QA</mat-label>
-                    <select matNativeControl multiple name="qa_list" ngModel="{{data.qa_list}}" #qa_list="ngModel" required>
-                        <option value="1">Active</option>
-                        <option value="0">Deactive</option>
+                    <select matNativeControl multiple name="qa_list" ngModel #qa_list="ngModel" required>
+                        <option value="">-- Assign Staff QA --</option>
+                        <option *ngFor="let qa_list of qa_lists" value="{{qa_list.id}}">{{qa_list.firstname}} {{qa_list.lastname}}</option>
                     </select>
                 </mat-form-field>
                 <div class="error-red" *ngIf="qa_list.invalid && (qa_list.touched || qa_list.dirty)">
                     <div *ngIf="qa_list.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Assign Staff Developer <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field>
+                    <mat-label>Assign Staff Developer</mat-label>
+                    <select matNativeControl multiple name="developer_list" ngModel #developer_list="ngModel" required>
+                        <option value="">-- Assign Staff Developer --</option>
+                        <option *ngFor="let developer_list of developer_lists" value="{{developer_list.id}}">{{developer_list.firstname}} {{developer_list.lastname}}</option>
+                    </select>
+                </mat-form-field>
+                <div class="error-red" *ngIf="developer_list.invalid && (developer_list.touched || developer_list.dirty)">
+                    <div *ngIf="developer_list.errors.required">
                         This field is required !
                     </div>
                 </div>

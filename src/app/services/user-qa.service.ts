@@ -150,4 +150,20 @@ export class UserQaService {
     })
   }
 
+  AllUser(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : 'bearer '+this.json_locstor.tokens,
+          });
+        let options = {headers: headers};
+        let body = this.utility.formData(data);
+
+        this.http.post(global.url_api + 'qa/topALL', body, options).subscribe(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
 }

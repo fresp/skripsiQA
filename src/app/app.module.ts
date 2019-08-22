@@ -32,6 +32,11 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import 'flatpickr/dist/flatpickr.css';
+import { FlatpickrModule } from 'angularx-flatpickr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ContainerComponent } from './container/container.component';
@@ -140,7 +145,13 @@ import { TicketEditComponent } from './ticket/ticket-edit/ticket-edit.component'
     // Lib Module
     MaterialFileInputModule,
     MatFileUploadModule,
-    DragDropModule
+    DragDropModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,22 +10,7 @@
       <mat-divider></mat-divider>
       <mat-card-content>
          
-        <div class="row">
-          <div class="col-sm-2 col-xs-12 text-right">
-              <strong>#Project Code <span class="symbol-required">*</span> : </strong>
-          </div>
-          <div class="col-sm-5 col-xs-12">
-              <mat-form-field appearance="outline">
-                  <mat-label>#Project Code</mat-label>
-                  <input matInput name="code" ngModel #code="ngModel" required>
-              </mat-form-field>
-              <div class="error-red" *ngIf="code.invalid && (code.touched || code.dirty)">
-                  <div *ngIf="code.errors.required">
-                      This field is required !
-                  </div>
-              </div>
-          </div>
-        </div>
+       
         <div class="row">
           <div class="col-sm-2 col-xs-12 text-right">
               <strong>Title <span class="symbol-required">*</span> : </strong>
@@ -59,25 +44,132 @@
           </div>
         </div>
         <div class="row">
+                <div class="col-sm-2 col-xs-12 text-right">
+                    <strong>Priority <span class="symbol-required">*</span> : </strong>
+                </div>
+                <div class="col-sm-5 col-xs-12">
+                    <mat-form-field>
+                        <mat-label>Priority</mat-label>
+                        <select matNativeControl  name="class_list" ngModel #class_list="ngModel" required>
+                            <option value="">-- Priority --</option>
+                            <option *ngFor="let class_list of class_lists" value="{{class_list.id}}">{{class_list.title}}</option>
+                        </select>
+                    </mat-form-field>
+                    <div class="error-red" *ngIf="class_list.invalid && (class_list.touched || class_list.dirty)">
+                        <div *ngIf="class_list.errors.required">
+                            This field is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
             <div class="col-sm-2 col-xs-12 text-right">
-                <strong>Status <span class="symbol-required">*</span> : </strong>
+                <strong>Platform <span class="symbol-required">*</span> : </strong>
             </div>
             <div class="col-sm-5 col-xs-12">
                 <mat-form-field>
-                    <mat-label>Status</mat-label>
-                    <select matNativeControl name="status" ngModel="{{select_status}}" #status="ngModel" required>
-                        <option value="1">Active</option>
-                        <option value="0">Deactive</option>
+                    <mat-label>Platform</mat-label>
+                    <select matNativeControl (change)="onChange($event)" name="platform" ngModel="{{select_platform}}" #platform="ngModel" required>
+                        <option value="">-- Select Platform</option>
+                        <option value="web">Web</option>
+                        <option value="mobile">Mobile</option>
                     </select>
                 </mat-form-field>
-                <div class="error-red" *ngIf="status.invalid && (status.touched || status.dirty)">
-                    <div *ngIf="status.errors.required">
+                <div class="error-red" *ngIf="platform.invalid && (platform.touched || platform.dirty)">
+                    <div *ngIf="platform.errors.required">
                         This field is required !
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="row" *ngIf="select_platform == 'web'">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Link <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field>
+                    <mat-label>Link</mat-label>
+                    <input matInput name="link" ngModel #link="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="link.invalid && (link.touched || link.dirty)">
+                    <div *ngIf="link.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="select_platform == 'mobile'">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Device <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field>
+                    <mat-label>Device</mat-label>
+                    <input matInput name="device" ngModel #device="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="device.invalid && (device.touched || device.dirty)">
+                    <div *ngIf="device.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="row" *ngIf="select_platform == 'mobile'">
+            <div class="col-sm-2 col-xs-12 text-right">
+                <strong>Version App <span class="symbol-required">*</span> : </strong>
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <mat-form-field>
+                    <mat-label>Version App</mat-label>
+                    <input matInput name="version" ngModel #version="ngModel" required>
+                </mat-form-field>
+                <div class="error-red" *ngIf="version.invalid && (version.touched || version.dirty)">
+                    <div *ngIf="version.errors.required">
+                        This field is required !
+                    </div>
+                </div>
+            </div>
+        </div> 
+       
+    
+            <div class="row">
+                <div class="col-sm-2 col-xs-12 text-right">
+                    <strong>Assign Staff Developer <span class="symbol-required">*</span> : </strong>
+                </div>
+                <div class="col-sm-5 col-xs-12">
+                    <mat-form-field>
+                        <mat-label>Assign Staff Developer</mat-label>
+                        <select matNativeControl  name="developer_list" ngModel #developer_list="ngModel" required>
+                            <option value="">-- Assign Staff Developer --</option>
+                            <option *ngFor="let developer_list of developer_lists" value="{{developer_list.id}}">{{developer_list.firstname}} {{developer_list.lastname}}</option>
+                        </select>
+                    </mat-form-field>
+                    <div class="error-red" *ngIf="developer_list.invalid && (developer_list.touched || developer_list.dirty)">
+                        <div *ngIf="developer_list.errors.required">
+                            This field is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-2 col-xs-12 text-right">
+                Image : 
+            </div>
+            <div class="col-sm-5 col-xs-12 marg-bottom-20">
+                <input type="file"  (change)="onSelectedImage($event)" placeholder="Image" name="image" ngModel #image="ngModel" required>
+                <div class="error-red margv10" *ngIf="image.touched">
+                    <div *ngIf="image.invalid">
+                        This field is required !
+                    </div>
+                    <div [ngClass]="{'hidden': validateImage}">
+                        Please select correct file format attachment (jpg, jpeg, png) !
+                    </div>
+                </div>
+            </div>
+          </div> 
       </mat-card-content>
       <mat-divider></mat-divider>
       <mat-card-actions>

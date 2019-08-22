@@ -18,10 +18,10 @@ let global = {
     // url_img: 'http://185.201.9.160:8043/upload/',
     // url_dev: 'http://185.201.9.160:8043/',
 
-    url: 'http://192.168.43.180:8042/',
-    url_api: 'http://192.168.43.180:8042/api/v1/',
-    url_img: 'http://192.168.43.180:8042/upload/',
-    url_dev: 'http://192.168.43.180:8042/',
+    url: 'http://eannov8.xyz:8048/',
+    url_api: 'http://eannov8.xyz:8048/api/v1/',
+    url_img: 'http://eannov8.xyz:8048/upload/',
+    url_dev: 'http://eannov8.xyz:8048/',
 
     // url_prod: 'http://185.201.9.175:8042/',
     // url_api_prod: 'http://185.201.9.175:8042/api/v1',

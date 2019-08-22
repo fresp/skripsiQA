@@ -55,23 +55,28 @@ export class TicketService {
     })
   }
 
-  //Invited Alumni Insert
   insertData(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
         let headers = new HttpHeaders({
-
-          'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization' : 'bearer '+this.json_locstor.tokens,
         });
         let options = {headers: headers};
-        // const body = new FormData();
-
-        let body = this.utility.formData(data);
-        // // let body = this.utility.formData(data);
-        // body.append("code", data.code);
-        // body.append("title", data.title);
-        // body.append("description", data.description);
-        // body.append("status", data.status);
+        const body = new FormData();
+        // let body = this.utility.formData(data);
+        body.append("board_id", data.board_id);
+        body.append("code", data.code);
+        body.append("title", data.title);
+        body.append("description", data.description);
+        body.append("class_id", data.class_id);
+        body.append("user_id", data.user_id);
+        body.append("device", data.device);
+        body.append("link", data.link);
+        body.append("version", data.version);
+        console.log(data.img);
+        if (data.img != "" || data.img != null || data.img != undefined) {
+          body.append("img", data.img, data.img.name);
+        }
+        body.append("status", data.status);
 
         this.http.post(global.url_api + 'ticket/create', body, options).subscribe(res => {
           resolve(res);
@@ -80,6 +85,8 @@ export class TicketService {
         })
     })
   }
+
+  
 
   //Invited Alumni Edit
   editData(data: any): Promise<any> {

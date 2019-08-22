@@ -199,23 +199,7 @@ export class InvitedAlumniEditComponent implements OnInit {
           console.log(restData);
           if(restData.code == 200) {
             
-            // let role = this.json_locstor.role;
-            // let log = {
-            //   user_id: this.json_locstor.id,
-            //   auth_code: this.json_locstor.auth_code,
-            //   role: this.json_locstor.role,
-            //   actor: this.json_locstor.firstname+' '+this.json_locstor.lastname+'-'+role.toUpperCase(),
-            //   module: global.module.user,
-            //   action: global.action.insert,
-            //   object: this.user.firstname+" "+this.user.lastname,
-            //   status: true
-            // }
-            
-            // this.logService.insertLog(log).then(restLog => {
-            //   console.log("Success insert log", restLog);
-            // }, err => {
-            //   console.log("Failed insert log", err);
-            // });
+         
 
             let snackBarRef = this.snackbar.open('Updated success', 'Close', {
               duration: 2000,

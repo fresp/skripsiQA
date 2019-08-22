@@ -44,8 +44,21 @@ export class UtilityService {
 
   checkSession() {
     if (localStorage.getItem(global.user_db) !== null) {
-      this.router.navigate(["/secure"]);
+      // this.router.navigate(["/secure"]);
     } else {
+      let snackBarRef = this.snackbar.open('Session Expired!', 'Close', {
+        duration: 500,
+        horizontalPosition: "end",
+        verticalPosition: "top"
+      });
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.router.navigate(["/login"]);
+      });
+    }
+  }
+
+  checkExpired(data) {
+    if (data.code == 403){
       let snackBarRef = this.snackbar.open('Session Expired!', 'Close', {
         duration: 500,
         horizontalPosition: "end",

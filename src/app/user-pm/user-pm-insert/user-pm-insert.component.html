@@ -84,14 +84,14 @@
           </div>
           <div class="col-sm-5 col-xs-12 marg-bottom-20">
               <input type="file" (change)="onSelectedImage($event)" placeholder="Image" name="image" ngModel #image="ngModel" required>
-              <!-- <div class="error-red margv10" *ngIf="image.touched">
+              <div class="error-red margv10" *ngIf="image.touched">
                   <div *ngIf="image.invalid">
                       This field is required !
                   </div>
                   <div [ngClass]="{'hidden': validateImage}">
                       Please select correct file format attachment (jpg, jpeg, png) !
                   </div>
-              </div> -->
+              </div>
           </div>
         </div>
         <div class="row">

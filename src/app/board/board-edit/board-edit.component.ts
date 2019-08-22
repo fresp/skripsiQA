@@ -4,6 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 import { BoardService } from 'src/app/services/board.service';
+
+import { UserDeveloperService } from 'src/app/services/user-developer.service';
+import { UserQaService } from 'src/app/services/user-qa.service';
 import global from "../../global";
 import * as moment from 'moment';
 
@@ -19,7 +22,8 @@ export class BoardEditComponent implements OnInit {
     title: '',
     description: '',
     status: 1,
-    qa_list : []
+    qa_list : [],
+    developer_list : []
 
   };
 
@@ -29,10 +33,12 @@ export class BoardEditComponent implements OnInit {
     title: '',
     description: '',
     status: 1,
-    qa_list : []
+    qa_list : [], 
+    developer_list : []
 
   };
-  addList: [];
+  developer_lists : [];
+  qa_lists : [];
 
   url_image = global.url_img+"user/";
 
@@ -51,7 +57,9 @@ export class BoardEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
-    private BoardService: BoardService
+    private BoardService: BoardService,
+    private userDeveloperService:UserDeveloperService,
+    private userQaService:UserQaService
     // private logService: LogService
   ) { }
 
@@ -62,6 +70,104 @@ export class BoardEditComponent implements OnInit {
     this.detailUser();
   }
 
+
+  getAllUser(){
+    if (this.json_locstor !== null) {
+      
+      let data = {
+        user_id: this.json_locstor.id,
+        auth_code: this.json_locstor.auth_code
+      }
+
+      this.userDeveloperService.AllUser(data).then(restData => {
+        console.log("All Line", restData);
+        if(restData.code == 200) {
+          this.developer_lists = restData.result;
+          console.log("Isi array line service", this.developer_lists);
+        }
+        else if(restData.code == 400){
+          this.snackbar.open('Fetch data failed, please try again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 401){
+          this.snackbar.open('Invalid input format, your data is not valid', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 403){
+          this.snackbar.open('Unauthorized, Please Re-login again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+  
+        }, err => {
+          this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+          console.log(err);
+        }); 
+    } else {
+      this.router.navigate(["login"]);
+    }
+  }
+
+  getAllQA(){
+    if (this.json_locstor !== null) {
+      
+      let data = {
+        user_id: this.json_locstor.id,
+        auth_code: this.json_locstor.auth_code
+      }
+
+      this.userQaService.AllUser(data).then(restData => {
+        console.log("All Line", restData);
+        if(restData.code == 200) {
+          this.qa_lists = restData.result;
+          console.log("Isi array line service", this.qa_lists);
+        }
+        else if(restData.code == 400){
+          this.snackbar.open('Fetch data failed, please try again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 401){
+          this.snackbar.open('Invalid input format, your data is not valid', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 403){
+          this.snackbar.open('Unauthorized, Please Re-login again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+  
+        }, err => {
+          this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+          console.log(err);
+        }); 
+    } else {
+      this.router.navigate(["login"]);
+    }
+  }
   
 
   detailUser(){
@@ -75,6 +181,8 @@ export class BoardEditComponent implements OnInit {
         console.log("Ini detail user", this.data);
       }
     }).then( () => {
+      this.getAllUser();
+      this.getAllQA();
     }).catch( () => {
         this.snackbar.open('Something went wrong, Please try again !', 'Close', {
           duration: 2000,
@@ -97,6 +205,7 @@ export class BoardEditComponent implements OnInit {
         this.data_edit.description = form.value.description;
         this.data_edit.status = form.value.status;
         this.data_edit.qa_list = form.value.qa_list;
+        this.data_edit.developer_list = form.value.developer_list;
         // this.data_edit.password = form.value.password;
         // var date = new Date();
         // date.toISOString

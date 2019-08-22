@@ -5,7 +5,7 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-
+        <!-- End Submenu Master -->
       <a mat-list-item (click)="toggleProjectManager()">
         <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">User</span>
         <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isProjectManager == true">expand_more</mat-icon>
@@ -13,40 +13,40 @@
       </a>
       <!-- Start Submenu Master -->
       <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
-        <mat-icon aria-hidden="false" aria-label="Project Manager Icon">group_add</mat-icon> <span class="menu-list-name">Project Manager List</span>
+        <mat-icon aria-hidden="false" aria-label="Project Manager Icon"></mat-icon> <span class="menu-list-name">Project Manager List</span>
       </a>
 
       <a mat-list-item routerLink="staffQA" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
-        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon">group_add</mat-icon> <span class="menu-list-name">Quality Assurance List</span>
+        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon"></mat-icon> <span class="menu-list-name">Quality Assurance List</span>
       </a>
 
       <a mat-list-item routerLink="staffDeveloper" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
-        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Developer List</span>
+        <mat-icon aria-hidden="false" aria-label="Developer Icon"></mat-icon> <span class="menu-list-name">Developer List</span>
       </a>
       
       <!-- Start Board COmponent -->
       <a mat-list-item routerLink="board" routerLinkActive="active">
-        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Board</span>
+        <mat-icon aria-hidden="false" aria-label="Developer Icon">developer_board</mat-icon> <span class="menu-list-name">Board</span>
       </a>
       <!-- End Board Component -->
 
       <!-- start report -->
       <a mat-list-item (click)="toggleReport()">
-        <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">Report</span>
+        <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">bookmarks</span>
         <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == true">expand_more</mat-icon>
         <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == false">expand_less</mat-icon>
       </a>
       <!-- Start Submenu Master -->
       <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Project Manager Icon">group_add</mat-icon> <span class="menu-list-name">Report A</span>
+        <mat-icon aria-hidden="false" aria-label="Project Manager Icon"></mat-icon> <span class="menu-list-name">Report A</span>
       </a>
 
       <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon">group_add</mat-icon> <span class="menu-list-name">Report B</span>
+        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon"></mat-icon> <span class="menu-list-name">Report B</span>
       </a>
 
       <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Developer Icon">group_add</mat-icon> <span class="menu-list-name">Report C</span>
+        <mat-icon aria-hidden="false" aria-label="Developer Icon"></mat-icon> <span class="menu-list-name">Report C</span>
       </a>
       <!-- End Submenu Master -->
     </mat-nav-list>
