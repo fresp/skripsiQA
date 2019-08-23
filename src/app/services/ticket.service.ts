@@ -37,6 +37,24 @@ export class TicketService {
     })
   }
 
+  AllComment(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : 'bearer '+this.json_locstor.tokens,
+          });
+        let options = {headers: headers};
+        let body = this.utility.formData(data);
+
+        this.http.post(global.url_api + 'ticket/commentList', body, options).subscribe(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
   //User Get Detail
   detailData(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -125,6 +143,24 @@ export class TicketService {
     })
   }
 
+  addComment(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization' : 'bearer '+this.json_locstor.tokens,
+        });
+        let options = {headers: headers};
+       
+        let body = this.utility.formData(data);
+
+        this.http.post(global.url_api + 'comment/', body, options).subscribe(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
   //Delete Invited Alumni
   deleteData(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -167,4 +203,29 @@ export class TicketService {
     })
   }
 
+  //Delete Invited Alumni
+  deleteComment(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : 'bearer '+this.json_locstor.tokens,
+          });
+        let httpParams = new HttpParams()
+            .append('comment_id', data.comment_id);
+            // httpParams.set('user_id', data.user_id);
+            // httpParams.set('auth_code', data.auth_code);
+            // httpParams.set('id', data.id);
+        let options = {headers: headers, params: httpParams};
+        console.log(options);
+
+        this.http.delete(global.url_api + 'comment', options).subscribe(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
 }
+
+

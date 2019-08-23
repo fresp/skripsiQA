@@ -1,15 +1,54 @@
 <ul class="breadcrumb">
   <li><a (click)="goToBack()">Ticket management</a></li>
-  <li class="active">Edit ({{data.title}})</li>
+  <li class="active">Detail ({{data.title}})</li>
 </ul>
 <mat-card class="wrapper-card">
-         <mat-card-header>
-                <mat-card-title>Detail Ticket</mat-card-title>
-            </mat-card-header>
+            <div class="col-xs-10">
+                <mat-card-header>
+                    <mat-card-title>Detail Ticket {{data.title}}</mat-card-title>
+                    
+                </mat-card-header>
+            </div>
+            <div class="col-xs-2">
+                <div class="wrapper-button">
+                        <button mat-raised-button class="bg-blue" mat-button [matMenuTriggerFor] = "menu" >Change Status</button>
+                        <mat-menu #menu = "matMenu">
+                        <button (click)="changeStatus('in-progress')" mat-menu-item *ngIf="data.status == 'created' || data.status == 'redo'">In Progress</button>
+                        <button (click)="changeStatus('ready-to-test')" mat-menu-item *ngIf="data.status == 'in-progress'">Ready To Test</button>
+                        <button (click)="changeStatus('in-review')" mat-menu-item *ngIf="data.status == 'ready-to-test'">In Review</button>
+                        <button (click)="changeStatus('redo')" mat-menu-item *ngIf="data.status == 'in-review'">Redo</button>
+                        <button (click)="changeStatus('done')" mat-menu-item *ngIf="data.status == 'in-review'">Done</button>
+                        </mat-menu>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+           
             <mat-divider></mat-divider>
             <mat-card-content>
-               
-             
+                    <div class="row">
+                            <div class="col-sm-2 col-xs-12 text-right">
+                                <strong>Status <span class="symbol-required">*</span> : </strong>
+                            </div>
+                            <div class="col-sm-5 col-xs-12">
+                                <mat-form-field>
+                                    <mat-label>Status</mat-label>
+                                    <select matNativeControl [readonly]="true"  name="status" ngModel="{{data.status}}" #status="ngModel" required>
+                                        <option value="">-- Select status</option>
+                                        <option value="todo">ToDo</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="ready-to-test">Ready To Test</option>
+                                        <option value="in-review">In Review</option>
+                                        <option value="redo">Redo</option>
+                                        <option value="done">Done</option>
+                                    </select>
+                                </mat-form-field>
+                                <div class="error-red" *ngIf="status.invalid && (status.touched || status.dirty)">
+                                    <div *ngIf="status.errors.required">
+                                        This field is required !
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
               <div class="row">
                 <div class="col-sm-2 col-xs-12 text-right">
                     <strong>Title <span class="symbol-required">*</span> : </strong>
@@ -159,29 +198,53 @@
                     </div>
             </mat-card-content>
             <mat-divider></mat-divider>
-            <mat-card-content>
+         
+                    
+          
+           
+      </mat-card>
+      <mat-card class="wrapper-card">
+
+         <mat-card-header>
+                <mat-card-title>Comment</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content style="margin-top: 50px;">
                 <div class="row">
-                        <div class="media">
-                                <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-                                  alt="Avatar">
-                                <div class="media-body">
-                                  <h5 class="mt-0 font-weight-bold blue-text">Anna Smith</h5>
-                                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                                  odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                  fringilla. Donec lacinia congue felis in faucibus.
-                              
-                                  <div class="media mt-3 shadow-textarea">
-                                    <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg"
-                                      alt="Generic placeholder image">
-                                    <div class="media-body">
-                                      <h5 class="mt-0 font-weight-bold blue-text">Danny Tatuum</h5>
-                                      <div class="form-group basic-textarea rounded-corners">
-                                        <textarea class="form-control z-depth-1" id="exampleFormControlTextarea345" rows="3" placeholder="Write your comment..."></textarea>
-                                      </div>
-                                    </div>
-                                  </div>
+                    <div class="media"  *ngFor="let comment_list of comment_lists">
+                        <div  style="text-align: right" *ngIf="json_locstor.user.id ==  comment_list.subject_id">
+                                <button mat-raised-button color="warn" (click)="goToDelete(comment_list.id)"><mat-icon>delete</mat-icon></button>
+                            <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="{{getImages(comment_list.img)}}"
+                            alt="Avatar">
+                        
+                            <div class="media-body">
+                                <h5 class="mt-0 font-weight-bold blue-text">{{comment_list.username}} - {{comment_list.subject == 'qa' ? 'Staff Quality Assurance' : 'Staff Developer'}}</h5>
+                                <div class="role"></div>
+                                {{comment_list.created_date}} - {{ comment_list.comment}}
+                            </div>
+                        </div>
+                        <div  style="text-align: left" *ngIf="json_locstor.user.id !=  comment_list.subject_id">
+                            <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="{{getImages(comment_list.img)}}" alt="Avatar">
+                        
+                            <div class="media-body">
+                                <h5 class="mt-0 font-weight-bold blue-text">{{comment_list.username}}  - {{comment_list.subject == 'qa' ? 'Staff Quality Assurance' : 'Staff Developer'}}</h5>
+                                <div class="role"></div>
+                                {{ comment_list.comment}} - {{comment_list.created_date}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="media-body">
+                                
+                                <h5 class="mt-0 font-weight-bold blue-text">Me</h5>
+                                <div class="form-group basic-textarea rounded-corners">
+                                <textarea class="form-control z-depth-1" [(ngModel)]="message" name="message" (keyup)="onSend($event)" id="exampleFormControlTextarea345" rows="3" placeholder="Write your comment..."></textarea>
                                 </div>
-                              </div>
+                                <button (click)="goToSent()" mat-raised-button class="bg-blue"><mat-icon>send</mat-icon> Send</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </mat-card-content>
       </mat-card>

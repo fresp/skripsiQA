@@ -21,7 +21,7 @@ export class BoardDetailComponent implements OnInit {
 
   locstor = localStorage.getItem(global.user_db);
   json_locstor = JSON.parse(this.locstor);
-
+  interval: any;
   detailId: string;
   data_edit = {
     id : '',
@@ -44,8 +44,9 @@ export class BoardDetailComponent implements OnInit {
     
     this.detailId = this.route.snapshot.paramMap.get('id');
     console.log(this.detailId);
-
-    this.getList();
+    this.interval = setInterval(() => { 
+      this.getList();
+    }, 5000);
     // this.detailUser();
   }
   getList(){
@@ -93,58 +94,66 @@ export class BoardDetailComponent implements OnInit {
         console.log({data :event.container.data[0].id});
         console.log({new_event :event.container.id});
         if (this.json_locstor !== null) {
-          this.data_edit.id = event.container.data[0].id;
-          this.data_edit.status = event.container.id;
-          this.ticketService.changeStatus(this.data_edit).then(restData => {
-            console.log(restData);
-            if(restData.code == 200) {
-              
-  
-              let snackBarRef = this.snackbar.open('Status Updated', 'Close', {
-                duration: 2000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              }); 
-            }
-            else if(restData.code == 400){
-              this.snackbar.open('Update failed, please try again', 'Close', {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              });
-            }
-            else if(restData.code == 401){
-              this.snackbar.open('Invalid input format', 'Close', {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              });
-            }
-            else if(restData.code == 402){
-              this.snackbar.open('Email already registered, please use another email !', 'Close', {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              });
-            }
-            else if(restData.code == 403){
-              this.snackbar.open('Unauthorized', 'Close', {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              });
-            }
-    
-          }, err => {
-  
-           
-            this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+          if(this.json_locstor.role=="Developer" && (event.container.id =="done" || event.container.id =="in-review" || event.container.id =="redo" || event.container.data[0].id =="in-review" )){
+            this.snackbar.open('You dont have Permission', 'Close', {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"
             });
-            console.log(err);
-          }); 
+          } else {
+            this.data_edit.id = event.container.data[0].id;
+            this.data_edit.status = event.container.id;
+            this.ticketService.changeStatus(this.data_edit).then(restData => {
+              console.log(restData);
+              if(restData.code == 200) {
+                
+    
+                let snackBarRef = this.snackbar.open('Status Updated', 'Close', {
+                  duration: 2000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                }); 
+              }
+              else if(restData.code == 400){
+                this.snackbar.open('Update failed, please try again', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                });
+              }
+              else if(restData.code == 401){
+                this.snackbar.open('Invalid input format', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                });
+              }
+              else if(restData.code == 402){
+                this.snackbar.open('Email already registered, please use another email !', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                });
+              }
+              else if(restData.code == 403){
+                this.snackbar.open('Unauthorized', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                });
+              }
+      
+            }, err => {
+    
+            
+              this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              });
+              console.log(err);
+            }); 
+          }
         } else {
           this.router.navigate(["login"]);
         }

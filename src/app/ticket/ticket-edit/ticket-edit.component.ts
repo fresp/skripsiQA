@@ -32,6 +32,10 @@ export class TicketEditComponent implements OnInit {
     version : '',
     
   };
+  data_comment = {
+    ticket_id : '',
+    comment : ''
+  }
 
   data_edit = {
     id : '',
@@ -53,12 +57,16 @@ export class TicketEditComponent implements OnInit {
   boardId: string;
   developer_lists : [];
   class_lists : [];
+  comment_lists : [];
 
   select_status = 1;
   select_platform:any
+  commentData:any
+  message:any
   validateImage = true;
   locstor = localStorage.getItem(global.user_db);
   json_locstor = JSON.parse(this.locstor);
+  interval: any;
   
   constructor(
     private router: Router,
@@ -75,11 +83,19 @@ export class TicketEditComponent implements OnInit {
     console.log(this.detailId);
 
     this.detailUser();
+    this.interval = setInterval(() => { 
+      this.detailUser(); 
+    }, 5000);
   }
 
   onChange(event) {
     this.select_platform = event.target.value;
     console.log(this.select_platform);
+  }
+
+  onSend(event) {
+    this.commentData = event.target.value;
+    console.log(this.commentData);
   }
 
 
@@ -178,6 +194,53 @@ export class TicketEditComponent implements OnInit {
       this.router.navigate(["login"]);
     }
   }
+
+  getComment(){
+    if (this.json_locstor !== null) {
+      
+      let data = {
+        id: this.detailId
+      }
+
+      this.TicketService.AllComment(data).then(restData => {
+        console.log("All Qa", restData);
+        if(restData.code == 200) {
+          this.comment_lists = restData.result;
+        }
+        else if(restData.code == 400){
+          this.snackbar.open('Fetch data failed, please try again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 401){
+          this.snackbar.open('Invalid input format, your data is not valid', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+        else if(restData.code == 403){
+          this.snackbar.open('Unauthorized, Please Re-login again', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+        }
+  
+        }, err => {
+          this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+          console.log(err);
+        }); 
+    } else {
+      this.router.navigate(["login"]);
+    }
+  }
   
 
   detailUser(){
@@ -199,6 +262,7 @@ export class TicketEditComponent implements OnInit {
       }
     }).then( () => {
       this.getAllUser();
+      this.getComment();
       this.getAllClass();
     }).catch( () => {
         this.snackbar.open('Something went wrong, Please try again !', 'Close', {
@@ -207,6 +271,10 @@ export class TicketEditComponent implements OnInit {
           verticalPosition: "top"
         });
     })
+  }
+
+  getImages(data){
+   return global.url_img +'/user/' +data
   }
 
  
@@ -288,7 +356,178 @@ export class TicketEditComponent implements OnInit {
   }
 
   goToBack(){
-    this.router.navigate(["../../Ticket"], {relativeTo: this.route});
+    this.router.navigate(["../../"], {relativeTo: this.route});
+  }
+  goToDelete(data){
+    // this.data_edit.password = form.value.password;
+    // var date = new Date();
+    // date.toISOString
+    
+    console.log(data)
+    this.TicketService.deleteComment({'comment_id' : data}).then(restData => {
+      console.log(restData);
+      if(restData.code == 200) {
+        this.message = '';
+
+        let snackBarRef = this.snackbar.open('Comment Deleted!!', 'Close', {
+          duration: 2000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 400){
+        this.snackbar.open('Update failed, please try again', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 401){
+        this.snackbar.open('Invalid input format', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 402){
+        this.snackbar.open('Email already registered, please use another email !', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 403){
+        this.snackbar.open('Unauthorized', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+
+    }, err => {
+
+     
+      this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top"
+      });
+      console.log(err);
+    }); 
+}
+
+  goToSent(){
+        this.data_comment.comment = this.commentData;
+        this.data_comment.ticket_id = this.detailId;
+        // this.data_edit.password = form.value.password;
+        // var date = new Date();
+        // date.toISOString
+        
+        console.log("Data Edited", this.data_comment);
+        
+        this.TicketService.addComment(this.data_comment).then(restData => {
+          console.log(restData);
+          if(restData.code == 200) {
+            this.message = '';
+
+            let snackBarRef = this.snackbar.open('Comment Sent!!', 'Close', {
+              duration: 2000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            });
+          }
+          else if(restData.code == 400){
+            this.snackbar.open('Update failed, please try again', 'Close', {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            });
+          }
+          else if(restData.code == 401){
+            this.snackbar.open('Invalid input format', 'Close', {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            });
+          }
+          else if(restData.code == 402){
+            this.snackbar.open('Email already registered, please use another email !', 'Close', {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            });
+          }
+          else if(restData.code == 403){
+            this.snackbar.open('Unauthorized', 'Close', {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            });
+          }
+  
+        }, err => {
+
+         
+          this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          });
+          console.log(err);
+        }); 
+  }
+
+  changeStatus(data){
+    this.data_edit.id = this.detailId;
+    this.data_edit.status = data
+    this.TicketService.changeStatus(this.data_edit).then(restData => {
+      console.log(restData);
+      if(restData.code == 200) {
+        let snackBarRef = this.snackbar.open('Status Updated', 'Close', {
+          duration: 2000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        }); 
+      }
+      else if(restData.code == 400){
+        this.snackbar.open('Update failed, please try again', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 401){
+        this.snackbar.open('Invalid input format', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 402){
+        this.snackbar.open('Email already registered, please use another email !', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+      else if(restData.code == 403){
+        this.snackbar.open('Unauthorized', 'Close', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        });
+      }
+
+    }, err => {
+
+      
+      this.snackbar.open('Something went wrong, contact your IT Support !', 'Close', {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top"
+      });
+      console.log(err);
+    }); 
   }
 
 }
