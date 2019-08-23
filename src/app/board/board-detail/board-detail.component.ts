@@ -44,15 +44,14 @@ export class BoardDetailComponent implements OnInit {
     
     this.detailId = this.route.snapshot.paramMap.get('id');
     console.log(this.detailId);
-    this.interval = setInterval(() => { 
-      this.getList();
-    }, 5000);
+    this.getList();
     // this.detailUser();
   }
   getList(){
     let data = {
       page: 1,
-      item: 500
+      item: 500,
+      board_id : this.detailId
     }
 
     this.ticketService.listData(data).then(restData => {
@@ -100,6 +99,9 @@ export class BoardDetailComponent implements OnInit {
               horizontalPosition: "end",
               verticalPosition: "top"
             });
+            // this.interval = setInterval(() => { 
+              this.getList();
+            // }, 5000);
           } else {
             this.data_edit.id = event.container.data[0].id;
             this.data_edit.status = event.container.id;

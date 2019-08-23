@@ -12,41 +12,21 @@
         <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isProjectManager == false">expand_less</mat-icon>
       </a>
       <!-- Start Submenu Master -->
-      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+      <a mat-list-item routerLink="projectManager" routerLinkActive="active"   *ngIf="json_locstor.role == 'Project Manager'" class="first-child" [ngClass]="{'child-master': isProjectManager}">
         <mat-icon aria-hidden="false" aria-label="Project Manager Icon"></mat-icon> <span class="menu-list-name">Project Manager List</span>
       </a>
 
-      <a mat-list-item routerLink="staffQA" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+      <a mat-list-item routerLink="staffQA"  *ngIf="json_locstor.role == 'Project Manager' || json_locstor.role == 'Quality Assurance'" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
         <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon"></mat-icon> <span class="menu-list-name">Quality Assurance List</span>
       </a>
 
-      <a mat-list-item routerLink="staffDeveloper" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
+      <a mat-list-item routerLink="staffDeveloper"   *ngIf="json_locstor.role == 'Project Manager' || json_locstor.role == 'Developer'" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isProjectManager}">
         <mat-icon aria-hidden="false" aria-label="Developer Icon"></mat-icon> <span class="menu-list-name">Developer List</span>
       </a>
       
       <!-- Start Board COmponent -->
       <a mat-list-item routerLink="board" routerLinkActive="active">
         <mat-icon aria-hidden="false" aria-label="Developer Icon">developer_board</mat-icon> <span class="menu-list-name">Board</span>
-      </a>
-      <!-- End Board Component -->
-
-      <!-- start report -->
-      <a mat-list-item (click)="toggleReport()">
-        <mat-icon aria-hidden="false" aria-label="PM Icon">group</mat-icon> <span class="menu-list-name">bookmarks</span>
-        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == true">expand_more</mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Expand Icon" *ngIf="isReport == false">expand_less</mat-icon>
-      </a>
-      <!-- Start Submenu Master -->
-      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Project Manager Icon"></mat-icon> <span class="menu-list-name">Report A</span>
-      </a>
-
-      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Quality Assurance Icon"></mat-icon> <span class="menu-list-name">Report B</span>
-      </a>
-
-      <a mat-list-item routerLink="projectManager" routerLinkActive="active" class="first-child" [ngClass]="{'child-master': isReport}">
-        <mat-icon aria-hidden="false" aria-label="Developer Icon"></mat-icon> <span class="menu-list-name">Report C</span>
       </a>
       <!-- End Submenu Master -->
     </mat-nav-list>

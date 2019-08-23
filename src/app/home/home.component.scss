@@ -1,10 +1,17 @@
 @import "./../../theme.scss";
 
-h3 {
-    margin: 0 0 10px;
-}
-  
-pre {
-    background-color: #f5f5f5;
-    padding: 15px;
+.wrapper-card {
+    margin: 0 20px;
+
+    .wrapper-greet {
+        padding: 20px;
+        color: mat-color($ng-app-grey, 600);
+
+        .title-greet {
+            font-size: 38px;
+        }
+        .desc-greet {
+            margin: 5px 0;
+        }
+    }
 }
